@@ -1,0 +1,2011 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Man Lung Yeung | Learning Strategist &amp; Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer and EdTech specialist. I run academic platforms at a university, build LMS and knowledge tools in the open, and previously led a five-person team shipping web and mobile to thousands of daily users."
+    />
+
+    <meta property="og:url" content="https://manlung.work/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Man Lung Yeung | Learning Strategist &amp; Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer and EdTech specialist. I run academic platforms at a university, build LMS and knowledge tools in the open, and previously led a five-person team shipping web and mobile to thousands of daily users."
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1889" />
+    <meta
+      property="og:image:alt"
+      content="Man Lung Yeung — learning systems, software, and portfolio hero."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="manlung.work" />
+    <meta name="twitter:url" content="https://manlung.work/" />
+    <meta name="twitter:title" content="Man Lung Yeung | Learning Strategist &amp; Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer and EdTech specialist. I run academic platforms at a university, build LMS and knowledge tools in the open, and previously led a five-person team shipping web and mobile to thousands of daily users."
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Man Lung Yeung — learning systems, software, and portfolio hero."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --soft-ink: #555;
+        --muted: #767676;
+        --accent: #4b2e83;
+        --line: #e8e8e8;
+        --paper: #f5f4f1;
+        --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --font-heading: "Instrument Serif", serif;
+        --grain-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E");
+      }
+
+      .instrument-serif-regular {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .instrument-serif-regular-italic {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, Arial, sans-serif;
+      }
+
+      #work,
+      #content,
+      #about,
+      #contact {
+        scroll-margin-top: 5.75rem;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0.7;
+        mix-blend-mode: multiply;
+        background-image: var(--grain-svg);
+        background-size: 180px 180px;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 8;
+        border-bottom: 1px solid transparent;
+        transition: background-color 320ms ease, border-color 320ms ease, box-shadow 320ms ease;
+      }
+
+      .site-header.is-scrolled {
+        backdrop-filter: blur(10px);
+        background: rgba(252, 252, 253, 0.9);
+        border-color: var(--line);
+        box-shadow: 0 8px 20px rgba(20, 20, 20, 0.04);
+      }
+
+      .container {
+        width: min(1100px, 92vw);
+        margin: 0 auto;
+      }
+
+      .header-row {
+        padding: 24px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        transition: padding 320ms ease;
+      }
+
+      .site-header.is-scrolled .header-row {
+        padding: 13px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-name {
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-size: 1.2rem;
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 26px;
+      }
+
+      .main-nav a {
+        color: var(--soft-ink);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-weight: 700;
+        font-family: var(--mono);
+      }
+
+      .main-nav a:hover {
+        color: var(--accent);
+      }
+
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        position: relative;
+        z-index: 10003;
+        transition: background-color 0.2s ease;
+      }
+
+      .nav-burger:hover {
+        background: rgba(75, 46, 131, 0.08);
+      }
+
+      .nav-burger:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .nav-burger-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 1px;
+        background: currentColor;
+        transition: transform 0.32s ease, opacity 0.24s ease;
+      }
+
+      .site-header.nav-is-open .nav-burger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .site-header.nav-is-open .nav-burger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .site-header.nav-is-open .nav-burger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .nav-backdrop {
+        display: none;
+      }
+
+      .hero {
+        position: relative;
+        box-sizing: border-box;
+        /* svh stays fixed when browser chrome shows/hides; dvh retriggers layout (jank on mobile). */
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100vw;
+        overflow-x: clip;
+      }
+
+      .hero .container {
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 0;
+        padding-block: clamp(1.5rem, 5vh, 4rem);
+      }
+
+      .hero-blob-wrap {
+        position: absolute;
+        right: -18px;
+        top: -28px;
+        width: clamp(500px, 76vw, 1000px);
+        aspect-ratio: 76 / 72;
+        height: auto;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      /** Lets CSS filter blur on the canvas spill past the box (WebKit fallback); JS toggles class */
+      .hero-blob-wrap.hero-blob-wrap--css-filter {
+        overflow: visible;
+      }
+
+      .hero-blob-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        opacity: 1;
+      }
+
+     
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes hero-content-in {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .hero-content > *:not(.hero-heading) {
+        opacity: 0;
+        animation: hero-content-in 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .hero-heading {
+        opacity: 1;
+      }
+
+      @keyframes hero-word-in {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 10px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .hero-heading-word {
+        display: inline-block;
+        opacity: 0;
+        animation: hero-word-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(0.05s + var(--word-i) * 0.048s);
+      }
+
+      .hero-content > *:nth-child(2) {
+        animation-delay: 0.72s;
+      }
+
+      .hero-content > *:nth-child(3) {
+        animation-delay: 0.86s;
+      }
+
+      .hero-content > *:nth-child(4) {
+        animation-delay: 0.98s;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-weight: 400;
+      }
+
+      .hero h1 {
+        max-width: 860px;
+        font-size: clamp(2.2rem, 5.2vw, 4.8rem);
+        line-height: 1.08;
+      }
+
+      .hero p {
+        max-width: 680px;
+        margin: 24px 0 32px;
+        color: var(--soft-ink);
+        font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+        line-height: 1.55;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        padding: 16px 32px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.93rem;
+        letter-spacing: 0.02em;
+        border: 1px solid transparent;
+        transition: transform 200ms ease, box-shadow 200ms ease, color 200ms ease;
+      }
+
+      .button-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(75, 46, 131, 0.2);
+      }
+
+      .button-secondary {
+        color: var(--ink);
+        border-color: transparent;
+        background: transparent;
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0;
+      }
+
+      .button-secondary:hover {
+        color: rgba(26, 26, 26, 0.95);
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(26, 26, 26, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.66rem;
+        font-weight: 700;
+        font-family: var(--mono);
+      }
+
+      .availability-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+      }
+
+      .hero-meta-inline {
+        margin-top: 64px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 24px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--soft-ink);
+        font-size: 0.72rem;
+        font-family: var(--mono);
+      }
+
+      .hero-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .meta-separator {
+        color: #a8a8a8;
+      }
+
+      .location-flag {
+        font-size: 1rem;
+        line-height: 1;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      section.hero {
+        padding: 0;
+      }
+
+      .section-kicker {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        color: var(--accent);
+        text-transform: uppercase;
+        font-weight: 700;
+        font-family: var(--mono);
+      }
+
+      .section-title {
+        font-size: clamp(1.75rem, 3.1vw, 2.8rem);
+        margin-bottom: 24px;
+      }
+
+      .work-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .work-card {
+        background: rgba(255, 255, 255, 0.66);
+        border: 1px solid rgba(26, 26, 26, 0.08);
+        border-radius: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .work-card:not(.case-study-card) {
+        padding: 24px;
+      }
+
+      .case-study-card {
+        transition: transform 350ms ease, opacity 500ms ease, translate 500ms ease;
+        opacity: 0;
+        translate: 0 20px;
+      }
+
+      .case-study-card.is-inview {
+        opacity: 1;
+        translate: 0 0;
+      }
+
+      .case-study-card:hover {
+        transform: scale(1.015);
+      }
+
+      .work-card img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        background: #f3f3f3;
+      }
+
+      .work-card h3 {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: clamp(1.6rem, 2.1vw, 2rem);
+        line-height: 1.2;
+      }
+
+      .work-card p {
+        color: var(--soft-ink);
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+
+      .card-surface-link {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+      }
+
+      .card-media {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 32px;
+      }
+
+      .card-subtitle {
+        font-style: italic;
+        color: #6f6f6f;
+        font-size: 1.02rem;
+      }
+
+      .card-title-link {
+        color: var(--ink);
+        text-decoration: none;
+        position: relative;
+        z-index: 11;
+      }
+
+      .card-title-link:hover {
+        color: var(--accent);
+      }
+
+      a.view-case-link {
+        display: inline-flex;
+        align-items: baseline;
+        margin-top: 8px;
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.98rem;
+        position: relative;
+        z-index: 11;
+        width: fit-content;
+        max-width: 100%;
+        text-decoration: none;
+        text-decoration-line: none;
+        -webkit-text-decoration: none;
+      }
+
+      a:not(.card-surface-link):not(.view-case-link):not(.prose-link) {
+        position: relative;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a:not(.card-surface-link):not(.view-case-link):not(.prose-link)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.09em;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 220ms ease;
+      }
+
+      a:not(.card-surface-link):not(.view-case-link):not(.prose-link):hover::before,
+      a:not(.card-surface-link):not(.view-case-link):not(.prose-link):focus-visible::before {
+        transform: scaleX(1);
+      }
+
+      a.view-case-link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.09em;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 220ms ease;
+      }
+
+      a.view-case-link:hover::before,
+      a.view-case-link:focus-visible::before {
+        transform: scaleX(1);
+      }
+
+      .external-link::before {
+        content: "";
+      }
+
+      .external-link::after {
+        content: "↗︎";
+        display: inline-block;
+        margin-left: 0.35em;
+        font-size: 0.95em;
+        transform: translateY(-0.02em);
+        position: static;
+      }
+
+      .external-link {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      a.prose-link {
+        display: inline;
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        text-decoration-color: color-mix(in srgb, var(--soft-ink) 55%, transparent);
+        transition:
+          color 140ms ease,
+          text-decoration-color 140ms ease;
+      }
+
+      a.prose-link:hover,
+      a.prose-link:focus-visible {
+        color: var(--accent);
+        text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      }
+
+      .about-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        column-gap: 32px;
+        row-gap: 0;
+        align-items: start;
+        justify-items: stretch;
+        grid-template-areas: "body photo";
+        width: 100%;
+      }
+
+      .about-profile-area {
+        grid-area: photo;
+        justify-self: end;
+      }
+
+      .about-copy-area {
+        grid-area: body;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .about-profile-wrap {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+      }
+
+      .about-profile-gallery {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        gap: 10px 12px;
+        width: max-content;
+        max-width: 100%;
+        align-items: center;
+      }
+
+      .about-profile-img {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        object-fit: contain;
+        background: transparent;
+        border-radius: 12px;
+        mix-blend-mode: multiply;
+        transform-origin: 50% 80%;
+        transition: transform 0.35s ease;
+      }
+
+      .about-profile-img.about-profile-portrait {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        justify-self: end;
+        max-width: 250px;
+        align-self: center;
+      }
+
+      .about-profile-img.about-profile-surfskate {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: start;
+        max-width: 182px;
+      }
+
+      .about-profile-img.about-profile-ding {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+        max-width: 200px;
+      }
+
+      .about-profile-img:hover {
+        animation: about-profile-shake 2.5s ease-in-out infinite;
+      }
+
+      @keyframes about-profile-shake {
+        0%,
+        100% {
+          transform: rotate(-5deg) translate(-1px, 0);
+        }
+        25% {
+          transform: rotate(6deg) translate(3px, -2px) skewX(-2deg);
+        }
+        50% {
+          transform: rotate(-3deg) translate(-3px, 2px);
+        }
+        75% {
+          transform: rotate(4deg) translate(2px, 1px) skewX(2deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .about-profile-img:hover {
+          animation: none;
+        }
+      }
+
+      .about-copy p {
+        margin: 0 0 1.25rem;
+        color: var(--soft-ink);
+        line-height: 1.75;
+        font-size: 1.02rem;
+      }
+
+      .about-copy p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      .contact-links {
+        margin: 0;
+        max-width: 660px;
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .contact-links .external-link {
+        color: var(--accent);
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        margin-top: 45px;
+        padding: 20px 0 34px;
+        color: var(--soft-ink);
+        font-size: 0.84rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px 20px;
+      }
+
+      .footer-tools-link {
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+
+      .footer-tools-link:hover,
+      .footer-tools-link:focus-visible {
+        color: var(--accent);
+      }
+
+      .marquee-shell {
+        margin: 0;
+        padding: 0;
+      }
+
+      .marquee {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 14px 0;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        align-items: center;
+        animation: marquee-slide 28s linear infinite;
+      }
+
+      .marquee-text {
+        font-family: var(--font-heading);
+        font-style: italic;
+        font-weight: 400;
+        color: rgba(26, 26, 26, 0.68);
+        font-size: clamp(1.4rem, 2.3vw, 1.75rem);
+        line-height: 1.22;
+        user-select: none;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      .marquee-line {
+        height: 1px;
+        background: linear-gradient(90deg, rgba(196, 103, 58, 0.3) 0%, rgba(66, 49, 169, 0.3) 100%);
+      }
+
+      .cursor-ring,
+      .cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 20;
+        will-change: transform;
+      }
+
+      .cursor-ring {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid rgba(75, 46, 131, 0.42);
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(2px);
+        transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background-color 180ms ease, opacity 180ms ease;
+      }
+
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(75, 46, 131, 0.95);
+        transition: width 180ms ease, height 180ms ease, opacity 180ms ease, background-color 180ms ease;
+      }
+
+      .cursor-ring.is-hovering {
+        width: 20px;
+        height: 20px;
+        border-color: rgba(75, 46, 131, 0.35);
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+      }
+
+      .cursor-dot.is-hovering {
+        width: 4px;
+        height: 4px;
+        background: rgba(75, 46, 131, 0.5);
+        opacity: 0;
+      }
+
+      @keyframes marquee-slide {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-33.333333%);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-blob-wrap {
+          width: clamp(360px, 86vw, 520px);
+          aspect-ratio: 76 / 72;
+          height: auto;
+          right: -34px;
+          top: -10px;
+          opacity: 0.9;
+        }
+
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card-content {
+          padding: 24px;
+          gap: 14px;
+        }
+
+        .about-layout {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "body"
+            "photo";
+          justify-items: stretch;
+          row-gap: 0.65rem;
+        }
+
+        .about-profile-area {
+          justify-self: center;
+          margin: 0.15rem 0 0.5rem;
+          width: 100%;
+          max-width: min(420px, 92vw);
+        }
+
+        .about-profile-wrap {
+          justify-content: center;
+        }
+
+        .about-profile-gallery {
+          width: 100%;
+        }
+
+        .about-profile-img.about-profile-portrait {
+          justify-self: center;
+          max-width: 260px;
+        }
+
+        .about-profile-img.about-profile-surfskate,
+        .about-profile-img.about-profile-ding {
+          justify-self: center;
+          max-width: min(200px, 44vw);
+        }
+
+        .main-nav {
+          gap: 14px;
+        }
+      }
+
+      @media (max-width: 467px) {
+        .site-header {
+          transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+        }
+
+        .header-row {
+          justify-content: flex-start;
+          transition:
+            padding 320ms ease,
+            background-color 0.3s ease,
+            box-shadow 0.3s ease;
+        }
+
+        .site-header:not(.nav-is-open) .header-row {
+          background-color: transparent;
+          box-shadow: none;
+        }
+
+        .nav-burger {
+          display: inline-flex;
+          margin-left: auto;
+        }
+
+        .site-header.nav-is-open {
+          z-index: 10000;
+          background-color: var(--paper);
+          border-bottom-color: var(--line);
+          box-shadow: 0 8px 20px rgba(20, 20, 20, 0.04);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+
+        .site-header.nav-is-open .header-row {
+          position: relative;
+          z-index: 10003;
+          /* background-color: var(--paper); */
+          /* box-shadow: 0 1px 0 var(--line); */
+        }
+
+        .site-header.nav-is-open .header-row .brand,
+        .site-header.nav-is-open .header-row .nav-burger {
+          position: relative;
+          z-index: 10005;
+        }
+
+        .nav-backdrop {
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: 10001;
+          background: rgba(22, 22, 22, 0.48);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          opacity: 0;
+          pointer-events: none;
+          transition: none;
+        }
+
+        .site-header.nav-is-open .nav-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+          transition: opacity 0.3s ease;
+        }
+
+        .main-nav {
+          position: fixed;
+          inset: 0;
+          z-index: 10002;
+          isolation: isolate;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 0;
+          padding: 96px 28px 40px;
+          margin: 0;
+          background-color: var(--paper);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: none;
+        }
+
+        .main-nav::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          opacity: 0.7;
+          mix-blend-mode: multiply;
+          background-image: var(--grain-svg);
+          background-size: 180px 180px;
+        }
+
+        .site-header.nav-is-open .main-nav {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .main-nav a {
+          position: relative;
+          z-index: 1;
+          font-size: 1.05rem;
+          letter-spacing: 0.14em;
+          padding: 14px 0;
+          width: 100%;
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+          transition: none;
+        }
+
+        .site-header.nav-is-open .main-nav a {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+          transition:
+            opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .site-header.nav-is-open .main-nav a:nth-child(1) {
+          transition-delay: 0.07s;
+        }
+
+        .site-header.nav-is-open .main-nav a:nth-child(2) {
+          transition-delay: 0.14s;
+        }
+
+        .site-header.nav-is-open .main-nav a:nth-child(3) {
+          transition-delay: 0.21s;
+        }
+
+        .site-header.nav-is-open .main-nav a:nth-child(4) {
+          transition-delay: 0.28s;
+        }
+
+        .site-header.nav-is-open .main-nav a:nth-child(5) {
+          transition-delay: 0.35s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-content > *:not(.hero-heading) {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+
+        .hero-heading-word {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media (max-width: 467px) and (prefers-reduced-motion: reduce) {
+        .site-header,
+        .site-header .header-row {
+          transition-duration: 0.01ms !important;
+        }
+
+        .site-header.nav-is-open .main-nav {
+          transition-duration: 0.01ms;
+        }
+
+        .site-header.nav-is-open .nav-backdrop {
+          transition-duration: 0.01ms;
+        }
+
+        .site-header.nav-is-open .main-nav a {
+          transition-duration: 0.01ms;
+          transition-delay: 0s !important;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+        .cursor-ring,
+        .cursor-dot {
+          display: none;
+        }
+
+        .marquee-track {
+          animation-duration: 40s;
+        }
+      }
+
+      /* Cross-document view transitions → case study pages (Chromium; others keep normal navigation). */
+      @view-transition {
+        navigation: auto;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        @view-transition {
+          navigation: none;
+        }
+      }
+
+      @supports (view-transition-name: none) {
+        .case-vt-cover-institutional-lms {
+          view-transition-name: case-vt-cover-institutional-lms;
+        }
+
+        .case-vt-cover-engineering-leadership {
+          view-transition-name: case-vt-cover-engineering-leadership;
+        }
+
+        .case-vt-cover-knowledge-management-obsidian {
+          view-transition-name: case-vt-cover-knowledge-management-obsidian;
+        }
+
+        .case-vt-cover-paideia-lms {
+          view-transition-name: case-vt-cover-paideia-lms;
+        }
+      }
+
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 420ms;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      ::view-transition-group(case-vt-cover-institutional-lms),
+      ::view-transition-group(case-vt-cover-engineering-leadership),
+      ::view-transition-group(case-vt-cover-knowledge-management-obsidian),
+      ::view-transition-group(case-vt-cover-paideia-lms) {
+        animation-duration: 550ms;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      ::view-transition-old(case-vt-cover-institutional-lms),
+      ::view-transition-new(case-vt-cover-institutional-lms),
+      ::view-transition-old(case-vt-cover-engineering-leadership),
+      ::view-transition-new(case-vt-cover-engineering-leadership),
+      ::view-transition-old(case-vt-cover-knowledge-management-obsidian),
+      ::view-transition-new(case-vt-cover-knowledge-management-obsidian),
+      ::view-transition-old(case-vt-cover-paideia-lms),
+      ::view-transition-new(case-vt-cover-paideia-lms) {
+        animation-duration: 550ms;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+    <header id="site-header" class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <span class="brand-name">Man Lung Yeung</span>
+        </div>
+        <button
+          type="button"
+          class="nav-burger"
+          id="nav-burger"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Menu"
+        >
+          <span class="nav-burger-line"></span>
+          <span class="nav-burger-line"></span>
+          <span class="nav-burger-line"></span>
+        </button>
+        <nav id="site-nav" class="main-nav" aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="services.html">Services</a>
+          <a href="#content">Content</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+              <div class="hero-blob-wrap" aria-hidden="true">
+                <canvas id="hero-blob-canvas" class="hero-blob-canvas"></canvas>
+              </div>
+            <h1 class="hero-heading">
+              <span class="hero-heading-word" style="--word-i: 0">I</span>
+              <span class="hero-heading-word" style="--word-i: 1">build</span>
+              <span class="hero-heading-word" style="--word-i: 2">humane,</span>
+              <span class="hero-heading-word" style="--word-i: 3">robust,</span>
+              <span class="hero-heading-word" style="--word-i: 4">scalable</span>
+              <span class="hero-heading-word" style="--word-i: 5">learning</span>
+              <span class="hero-heading-word" style="--word-i: 6">systems</span>
+              <span class="hero-heading-word" style="--word-i: 7">that</span>
+              <span class="hero-heading-word" style="--word-i: 8">hold</span>
+              <span class="hero-heading-word" style="--word-i: 9">up</span>
+              <span class="hero-heading-word" style="--word-i: 10">under</span>
+              <span class="hero-heading-word" style="--word-i: 11">real</span>
+              <span class="hero-heading-word" style="--word-i: 12">courses</span>
+              <span class="hero-heading-word" style="--word-i: 13">and</span>
+              <span class="hero-heading-word" style="--word-i: 14">real</span>
+              <span class="hero-heading-word" style="--word-i: 15">users.</span>
+            </h1>
+            <p>
+              EdTech specialist and software engineer. Learning Technology Specialist at Trinity Western University, where I keep institutional Moodle quiet and ship plugins back to the community.  Previously software engineer and team lead of five at a Hong Kong startup.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work">View Selected Work</a>
+              <a class="button button-secondary" href="#about">About Me</a>
+            </div>
+            <div class="hero-meta-inline">
+              <div class="hero-meta-item availability">
+                <span class="availability-dot"></span>
+                <span>Available for New Projects</span>
+              </div>
+              <span class="meta-separator">|</span>
+              <div class="hero-meta-item"><span class="location-flag">🇨🇦</span>Currently in Richmond, BC</div>
+              <span class="meta-separator">|</span>
+              <div class="hero-meta-item">EN / 粵 / 普 / 日本語</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="marquee-shell"
+        role="region"
+        aria-label="Editorial quotes by Eugene Delacroix, Maria Montessori, and John Dewey"
+      >
+        <div class="marquee-line"></div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span class="marquee-text">
+              Artists who seek perfection in everything are those who cannot attain it in anything. ― Eugene Delacroix
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="marquee-text" aria-hidden="true">
+              Artists who seek perfection in everything are those who cannot attain it in anything. ― Eugene Delacroix
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="marquee-text" aria-hidden="true">
+              Artists who seek perfection in everything are those who cannot attain it in anything. ― Eugene Delacroix
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+          </div>
+        </div>
+        <div class="marquee-line"></div>
+      </div>
+
+      <section id="work">
+        <div class="container">
+          <p class="section-kicker">Case Studies</p>
+          <h2 class="section-title">Selected Work</h2>
+          <div class="work-grid">
+            <article class="work-card case-study-card">
+              <a
+                class="card-surface-link"
+                aria-label="Institutional LMS at Scale"
+                href="case-studies/institutional-lms-at-scale.html"
+              ></a>
+              <div class="card-media" aria-hidden="true">
+                <img
+                  class="case-vt-cover-institutional-lms"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/13/institutional-lms-cover.jpg"
+                  alt="Institutional LMS project preview"
+                />
+              </div>
+              <div class="card-content">
+                <h3>
+                  <a class="card-title-link" href="case-studies/institutional-lms-at-scale.html">Institutional LMS at Scale</a>
+                </h3>
+                <p class="card-subtitle">To improve platform reliability and teaching continuity at scale.</p>
+                <p>
+                  Managing Moodle and WordPress multisite ecosystems for Trinity Western University, including plugin R&D, gradebook integrations, Turnitin workflows, and support patterns that keep course delivery reliable.
+                </p>
+                <a class="view-case-link" href="case-studies/institutional-lms-at-scale.html">View Case Study →</a>
+              </div>
+            </article>
+            <article class="work-card case-study-card">
+              <a
+                class="card-surface-link"
+                aria-label="Engineering Leadership"
+                href="case-studies/engineering-leadership.html"
+              ></a>
+              <div class="card-media" aria-hidden="true">
+                <img
+                  class="case-vt-cover-engineering-leadership"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/13/dan-freeman-ckxoFlEtlUc-unsplash.jpg"
+                  alt="Engineering leadership project preview"
+                />
+              </div>
+              <div class="card-content">
+                <h3>
+                  <a class="card-title-link" href="case-studies/engineering-leadership.html">Engineering Leadership</a>
+                </h3>
+                <p class="card-subtitle">To raise delivery quality while shipping MVPs in fast cycles.</p>
+                <p>
+                  Led a team of five engineers at a Hong Kong technology startup, shipping web and mobile MVPs with a TypeScript-first stack while improving delivery quality and technical communication.
+                </p>
+                <a class="view-case-link" href="case-studies/engineering-leadership.html">View Case Study →</a>
+              </div>
+            </article>
+            <article class="work-card case-study-card">
+              <a
+                class="card-surface-link"
+                aria-label="Knowledge Management and Obsidian"
+                href="case-studies/knowledge-management-obsidian.html"
+              ></a>
+              <div class="card-media" aria-hidden="true">
+                <img
+                  class="case-vt-cover-knowledge-management-obsidian"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/13/277412388-c8a501e8-c5b6-4622-b5df-2a2335609cae-1.jpeg"
+                  alt="Knowledge management and Obsidian project preview"
+                />
+              </div>
+              <div class="card-content">
+                <h3>
+                  <a class="card-title-link" href="case-studies/knowledge-management-obsidian.html"
+                    >Knowledge Management &amp; Obsidian</a>
+                </h3>
+                <p class="card-subtitle">
+                  To make durable thinking easier — in public, in plugins, and in writing.
+                </p>
+                <p>
+                  Early work in personal knowledge management: open-source Obsidian plugins, a public wiki at yomaru.dev
+                  with tens of thousands of monthly views, and ongoing reflection on learning as AI makes raw knowledge
+                  cheap and abundant.
+                </p>
+                <a class="view-case-link" href="case-studies/knowledge-management-obsidian.html">View Case Study →</a>
+              </div>
+            </article>
+            <article class="work-card case-study-card">
+              <a
+                class="card-surface-link"
+                aria-label="Next-gen LMS Exploration"
+                href="case-studies/paideia-lms.html"
+              ></a>
+              <div class="card-media" aria-hidden="true">
+                <img
+                  class="case-vt-cover-paideia-lms"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/13/Snapzy_2026-05-12_16-00-13_346.png"
+                  alt="Paideia LMS — next-gen single-binary LMS"
+                />
+              </div>
+              <div class="card-content">
+                <h3>
+                  <a class="card-title-link" href="case-studies/paideia-lms.html">Next-gen LMS Exploration</a>
+                </h3>
+                <p class="card-subtitle">Paideia LMS — a modern Moodle / Canvas alternative in a single binary.</p>
+                <p>
+                  Founded and built Paideia LMS — a next-generation, single-binary LMS focused on simplicity. Built with
+                  Bun, React Router v7, and TypeScript. Live demo and open docs; currently paused while seeking funding
+                  and contributors.
+                </p>
+                <a class="view-case-link" href="case-studies/paideia-lms.html">View Case Study →</a>
+              </div>
+            </article>
+          </div>
+          <p style="margin-top: 14px; color: var(--muted); font-size: 0.88rem">
+            A significant portion of institutional work is confidential; details and outcomes are available on request.
+          </p>
+        </div>
+      </section>
+
+      <section id="content">
+        <div class="container">
+          <p class="section-kicker">Content & Presence</p>
+          <h2 class="section-title">Public Classroom, Writing, and Links</h2>
+          <div class="work-grid">
+            <article class="work-card">
+              <h3>YouTube</h3>
+              <p>
+                A public classroom and build log where I share practical lessons on software architecture, learning technology systems, and implementation details that help teams ship with confidence.
+              </p>
+              <p style="margin-top: 14px;"><a class="external-link" href="https://www.youtube.com/@yomaru_1999" style="color: var(--accent)">Explore channel</a></p>
+            </article>
+            <article class="work-card">
+              <h3>Writing / Lab</h3>
+              <p>
+                Notes, experiments, and technical deep-dives published on personal channels, including plugin ideas, systems observations, and implementation trade-offs from real environments.
+              </p>
+              <p style="margin-top: 14px;"><a class="external-link" href="https://yomaru.dev/" style="color: var(--accent)">yomaru.dev</a></p>
+            </article>
+            <article class="work-card">
+              <h3>Links</h3>
+              <p>
+                A curated set of active projects, references, and social profiles for collaborators, hiring teams, and peers looking for practical EdTech engineering perspectives.
+              </p>
+              <p style="margin-top: 14px;">
+                <a class="external-link" href="https://www.linkedin.com/in/yeung-man-lung" style="color: var(--accent)">LinkedIn</a>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <p class="section-kicker">About</p>
+          <h2 class="section-title">Bridging learning goals and rigorous systems.</h2>
+          <div class="about-layout">
+            <div class="about-copy about-copy-area">
+              <p>
+                I am a <a class="prose-link" href="bio.html">software engineer and content creator</a> focused on learning technology.
+                At <a class="prose-link" href="https://www.twu.ca/">TWU</a> I work as a Learning Technology Specialist and Moodle administrator;
+                before that I was a software engineer and team lead at a Hong Kong startup.
+              </p>
+              <p>
+                Most of what I know is self-taught. I care about making learning easier to start and sustain—clear resources,
+                workflows that fit real courses, and platforms that stay reliable once courses are well underway.
+                My work bridges those teaching goals with system reality: LMS and CMS stacks, integrations, AI where it earns its place,
+                and documentation that teams can trust for a full term.
+              </p>
+              <p>
+                I am a husband and a serious <a class="prose-link" href="music.html">music</a> fan. I&apos;m a Christian and spend Sundays with my
+                <a class="prose-link" href="https://www.vancouverchurchofchrist.org/">church</a> community in Vancouver.
+                Outside work I publish technical writing, follow learning technology closely, and keep studying Japanese.
+              </p>
+            </div>
+            <div class="about-profile-wrap about-profile-area">
+              <div class="about-profile-gallery">
+                <img
+                  class="about-profile-img about-profile-portrait"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/04/Crop-Image-1.png"
+                  alt="Man Lung Yeung—portrait with transparent background"
+                  width="640"
+                  height="640"
+                  decoding="async"
+                />
+                <img
+                  class="about-profile-img about-profile-surfskate"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/07/sam_1456424095581042.png"
+                  alt="My surfskate board"
+                  width="400"
+                  height="400"
+                  decoding="async"
+                />
+                <img
+                  class="about-profile-img about-profile-ding"
+                  src="https://cdn1.sharemyimage.com/smi/2026/05/07/sam_1634574594496208.png"
+                  alt="My dog Ding Ding"
+                  width="400"
+                  height="400"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <p class="section-kicker">Contact</p>
+          <h2 class="section-title">Let&apos;s Talk</h2>
+          <p style="color: var(--soft-ink); max-width: 660px; margin: 0 0 18px">
+            Open to collaborations, speaking, and roles involving learning systems, platform operations, and engineering leadership.
+            Reach out by email or on the profiles below.
+          </p>
+          <p class="contact-links">
+            <a class="external-link" href="mailto:manlung.yeung@outlook.com">manlung.yeung@outlook.com</a>
+            &nbsp;|&nbsp;
+            <a class="external-link" href="https://www.linkedin.com/in/yeung-man-lung">LinkedIn</a>
+            &nbsp;|&nbsp;
+            <a class="external-link" href="https://github.com/hananoshikaYomaru">GitHub</a>
+            &nbsp;|&nbsp;
+            <a class="external-link" href="https://x.com/yomaru_1999">X</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Ken Man Lung Yeung — Richmond, BC — Precision in learning technology</span>
+        <a class="footer-tools-link" href="/tools">Tools</a>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var imgs = document.querySelectorAll("#work .work-grid .case-study-card .card-media img");
+        if (!imgs.length) return;
+
+        var backup = [];
+        for (var i = 0; i < imgs.length; i += 1) {
+          backup.push(imgs[i].className);
+        }
+
+        var vtClasses = [
+          "case-vt-cover-institutional-lms",
+          "case-vt-cover-engineering-leadership",
+          "case-vt-cover-knowledge-management-obsidian",
+          "case-vt-cover-paideia-lms"
+        ];
+
+        function keepClassForFilename(name) {
+          if (name === "institutional-lms-at-scale.html") return "case-vt-cover-institutional-lms";
+          if (name === "engineering-leadership.html") return "case-vt-cover-engineering-leadership";
+          if (name === "knowledge-management-obsidian.html") return "case-vt-cover-knowledge-management-obsidian";
+          if (name === "paideia-lms.html") return "case-vt-cover-paideia-lms";
+          return null;
+        }
+
+        window.addEventListener("pageshow", function (e) {
+          if (!e.persisted) return;
+          for (var r = 0; r < imgs.length; r += 1) {
+            imgs[r].className = backup[r];
+          }
+        });
+
+        window.addEventListener("pageswap", function (e) {
+          if (!e.viewTransition) return;
+          var act = e.activation;
+          var dest = act && (act.entry || act.destination);
+          if (!dest || !dest.url) return;
+          var file = new URL(dest.url).pathname.split("/").pop() || "";
+          var keep = keepClassForFilename(file);
+          if (!keep) return;
+          for (var k = 0; k < imgs.length; k += 1) {
+            var img = imgs[k];
+            for (var v = 0; v < vtClasses.length; v += 1) {
+              var c = vtClasses[v];
+              if (img.classList.contains(c) && c !== keep) {
+                img.classList.remove(c);
+              }
+            }
+          }
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const header = document.getElementById("site-header");
+        const year = document.getElementById("year");
+        const cursorRing = document.getElementById("cursor-ring");
+        const cursorDot = document.getElementById("cursor-dot");
+        year.textContent = String(new Date().getFullYear());
+
+        const onScroll = function () {
+          if (window.scrollY > 24) header.classList.add("is-scrolled");
+          else header.classList.remove("is-scrolled");
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        const navBurger = document.getElementById("nav-burger");
+        const navBackdrop = document.getElementById("nav-backdrop");
+        const siteNav = document.getElementById("site-nav");
+        if (navBurger && navBackdrop && siteNav && header) {
+          function setNavOpen(open) {
+            header.classList.toggle("nav-is-open", open);
+            navBurger.setAttribute("aria-expanded", open ? "true" : "false");
+            navBurger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            navBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+
+          function toggleNav() {
+            setNavOpen(!header.classList.contains("nav-is-open"));
+          }
+
+          navBurger.addEventListener("click", toggleNav);
+          navBackdrop.addEventListener("click", function () {
+            setNavOpen(false);
+          });
+          siteNav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setNavOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && header.classList.contains("nav-is-open")) {
+              setNavOpen(false);
+              navBurger.focus();
+            }
+          });
+          window.addEventListener(
+            "resize",
+            function () {
+              if (window.innerWidth > 467 && header.classList.contains("nav-is-open")) {
+                setNavOpen(false);
+              }
+            },
+            { passive: true }
+          );
+        }
+
+        const canvas = document.getElementById("hero-blob-canvas");
+        const blobWrap = document.querySelector(".hero-blob-wrap");
+        const ctx = canvas ? canvas.getContext("2d") : null;
+        const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+        /**
+         * iOS Safari / Edge (WebKit) often ignore ctx.filter when drawing from another canvas.
+         * Detect once and fall back to CSS filter on the canvas element (+ overflow visible on wrap).
+         */
+        function supportsCanvas2dFilterBlur() {
+          try {
+            const src = document.createElement("canvas");
+            src.width = 96;
+            src.height = 96;
+            const sc = src.getContext("2d");
+            sc.fillStyle = "#ffffff";
+            sc.fillRect(40, 40, 16, 16);
+            const dst = document.createElement("canvas");
+            dst.width = 96;
+            dst.height = 96;
+            const dc = dst.getContext("2d");
+            dc.filter = "blur(8px)";
+            dc.drawImage(src, 0, 0);
+            dc.filter = "none";
+            const edge = dc.getImageData(22, 48, 1, 1).data;
+            return edge[3] > 8;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        const useCssBlurFallback = ctx ? !supportsCanvas2dFilterBlur() : false;
+        if (useCssBlurFallback && blobWrap) {
+          blobWrap.classList.add("hero-blob-wrap--css-filter");
+        }
+
+        /**
+         * Hero 3D orbs + optional dreamy post-blur (single master knob).
+         */
+        const HERO_ORBS = {
+          /** Master blur (px) applied to the whole orb pass; 0 = crisp orbs only */
+          MASTER_BLUR_PX: 40,
+          FOCAL: 520,
+          ORBIT_SCALE: 0.18,
+          /** Orb radius as a fraction of min(canvas width, height) */
+          ORB_SIZE: 0.15,
+          /** Whole-cluster opacity (orbs drawn opaque offscreen, then composited — avoids overlap color jumps) */
+          ORB_ALPHA: 0.5,
+          /** Depth difference required before draw order changes; prevents rapid color/order flicker */
+          DEPTH_SWAP_THRESHOLD: 14,
+          SPIN_X: 0.00035,
+          SPIN_Y: 0.00055,
+          SPIN_Z: 0.00023,
+          CURSOR_TILT: 0.55,
+          CANVAS_SCALE: 1.15,
+          /** Radians per ms for each orb’s hue/lightness drift (independent rates) */
+          COLOR_PHASE_SPEED: [0.000082, 0.000055, 0.000095],
+          /** min-width 901px: cluster center = default + these (CSS px; +x = right, +y = down) */
+          CLUSTER_OFFSET_X_LG: 52,
+          CLUSTER_OFFSET_Y_LG: 0
+        };
+
+        /** Match `.hero-blob-wrap { aspect-ratio }` — backing-store height follows width only (no viewport height). */
+        const HERO_BLOB_ASPECT = { W: 76, H: 72 };
+
+        const SQ3 = Math.sqrt(3) / 2;
+        const baseOrbits = [
+          { x: 1, y: 0, z: 0 },
+          { x: -0.5, y: 0, z: SQ3 },
+          { x: -0.5, y: 0, z: -SQ3 }
+        ];
+
+        /** Center hue, saturation, fill L, edge L, oscillation amplitudes (sin phase) */
+        const orbPalette = [
+          { h: 267, s: 88, lf: 52, le: 38, ampH: 20, ampLf: 5, ampLe: 4 },
+          { h: 185, s: 82, lf: 44, le: 32, ampH: 26, ampLf: 6, ampLe: 5 },
+          { h: 24, s: 92, lf: 56, le: 42, ampH: 22, ampLf: 6, ampLe: 5 }
+        ];
+
+        let orbColorPhase = [0.4, 1.9, 3.3];
+
+        let width = 0;
+        let height = 0;
+        let orbLayer = null;
+        let orbCtx = null;
+        let raf = 0;
+        let cursorNx = 0;
+        let cursorNy = 0;
+        let angleX = 0.35;
+        let angleY = 0.6;
+        let angleZ = 0.2;
+        let drawOrder = [0, 1, 2];
+        let lastTime = 0;
+        let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let isHeroWide = false;
+
+        function applyClusterOpacity() {
+          canvas.style.opacity = String(Math.max(0, Math.min(1, HERO_ORBS.ORB_ALPHA)));
+        }
+
+        function resize() {
+          if (!canvas || !ctx) return;
+          width = Math.floor(canvas.clientWidth || 0);
+          if (!width) return;
+          height = Math.floor((width * HERO_BLOB_ASPECT.H) / HERO_BLOB_ASPECT.W);
+          if (!height) return;
+          isHeroWide = window.matchMedia("(min-width: 901px)").matches;
+          applyClusterOpacity();
+          canvas.width = Math.floor(width * DPR);
+          canvas.height = Math.floor(height * DPR);
+
+          const adjust = (HERO_ORBS.CANVAS_SCALE - 1)/ 2 + 1;
+          ctx.setTransform(DPR * adjust, 0, 0, DPR * adjust, 0, 0);
+          if (!orbLayer) {
+            orbLayer = document.createElement("canvas");
+            orbCtx = orbLayer.getContext("2d");
+          }
+          orbLayer.width = canvas.width * HERO_ORBS.CANVAS_SCALE;
+          orbLayer.height = canvas.height * HERO_ORBS.CANVAS_SCALE;
+          orbCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+
+        function rotateEuler(p, ax, ay, az) {
+          let x = p.x;
+          let y = p.y;
+          let z = p.z;
+          const cx = Math.cos(ax);
+          const sx = Math.sin(ax);
+          const cy = Math.cos(ay);
+          const sy = Math.sin(ay);
+          const cz = Math.cos(az);
+          const sz = Math.sin(az);
+          let y1 = y * cx - z * sx;
+          let z1 = y * sx + z * cx;
+          y = y1;
+          z = z1;
+          let x2 = x * cy + z * sy;
+          let z2 = -x * sy + z * cy;
+          x = x2;
+          z = z2;
+          let x3 = x * cz - y * sz;
+          let y3 = x * sz + y * cz;
+          return { x: x3, y: y3, z: z2 };
+        }
+
+        function project(p, cx, cy, focal) {
+          const denom = focal - p.z;
+          const s = focal / Math.max(denom, 40);
+          return { x: cx + p.x * s, y: cy + p.y * s, z: p.z, scale: s };
+        }
+
+        function clampChannel(v, lo, hi) {
+          return Math.max(lo, Math.min(hi, v));
+        }
+
+        function orbColorsAtIndex(i) {
+          const p = orbPalette[i];
+          const w = Math.sin(orbColorPhase[i]);
+          const h = (p.h + w * p.ampH + 720) % 360;
+          const lf = clampChannel(p.lf + w * p.ampLf, 40, 62);
+          const le = clampChannel(p.le + w * p.ampLe, 22, 48);
+          return {
+            fill: "hsl(" + h + ", " + p.s + "%, " + lf + "%)",
+            edge: "hsl(" + h + ", " + p.s + "%, " + le + "%)"
+          };
+        }
+
+        function drawOrb(targetCtx, screenX, screenY, screenR, fill, edge) {
+          const g = targetCtx.createRadialGradient(
+            screenX - screenR * 0.35,
+            screenY - screenR * 0.35,
+            0,
+            screenX,
+            screenY,
+            screenR
+          );
+          g.addColorStop(0, fill);
+          g.addColorStop(0.88, fill);
+          g.addColorStop(1, edge);
+          targetCtx.fillStyle = g;
+          targetCtx.beginPath();
+          targetCtx.arc(screenX, screenY, screenR, 0, Math.PI * 2);
+          targetCtx.fill();
+        }
+
+        function tick(now) {
+          if (!canvas || !ctx || !width || !height || !orbLayer || !orbCtx) {
+            raf = window.requestAnimationFrame(tick);
+            return;
+          }
+
+          const dt = lastTime ? Math.min(48, now - lastTime) : 16;
+          lastTime = now;
+
+          if (!reduceMotion) {
+            angleX += HERO_ORBS.SPIN_X * dt + cursorNy * HERO_ORBS.CURSOR_TILT * 0.00012 * dt;
+            angleY += HERO_ORBS.SPIN_Y * dt + cursorNx * HERO_ORBS.CURSOR_TILT * 0.0001 * dt;
+            angleZ += HERO_ORBS.SPIN_Z * dt;
+            orbColorPhase[0] += dt * HERO_ORBS.COLOR_PHASE_SPEED[0];
+            orbColorPhase[1] += dt * HERO_ORBS.COLOR_PHASE_SPEED[1];
+            orbColorPhase[2] += dt * HERO_ORBS.COLOR_PHASE_SPEED[2];
+          }
+
+          const cx =
+            width * 0.5 + (isHeroWide ? HERO_ORBS.CLUSTER_OFFSET_X_LG : 0);
+          const cy =
+            height * 0.52 + (isHeroWide ? HERO_ORBS.CLUSTER_OFFSET_Y_LG : 0);
+          const orbitR = Math.min(width, height) * HERO_ORBS.ORBIT_SCALE;
+          const baseR = Math.min(width, height) * HERO_ORBS.ORB_SIZE;
+
+          const tiltX = cursorNy * 0.35;
+          const tiltY = cursorNx * 0.35;
+
+          const projected = [];
+          for (let i = 0; i < 3; i += 1) {
+            const b = baseOrbits[i];
+            const p0 = { x: b.x * orbitR, y: b.y * orbitR, z: b.z * orbitR };
+            const p = rotateEuler(p0, angleX + tiltX, angleY + tiltY, angleZ);
+            const q = project(p, cx, cy, HERO_ORBS.FOCAL);
+            const r = Math.max(10, baseR * q.scale);
+            const col = orbColorsAtIndex(i);
+            projected.push({
+              id: i,
+              x: q.x,
+              y: q.y,
+              z: p.z,
+              r: r,
+              fill: col.fill,
+              edge: col.edge
+            });
+          }
+
+          // Hysteresis depth sort: order can change, but only after a meaningful
+          // depth gap. This avoids color/order popping near equal-depth crossings.
+          const projectedById = projected.reduce(function (acc, item) {
+            acc[item.id] = item;
+            return acc;
+          }, []);
+          const currentRank = drawOrder.reduce(function (acc, id, index) {
+            acc[id] = index;
+            return acc;
+          }, []);
+          drawOrder = drawOrder.slice().sort(function (a, b) {
+            const dz = projectedById[a].z - projectedById[b].z;
+            if (Math.abs(dz) < HERO_ORBS.DEPTH_SWAP_THRESHOLD) {
+              return currentRank[a] - currentRank[b];
+            }
+            return dz;
+          });
+
+          orbCtx.clearRect(0, 0, width, height);
+          orbCtx.save();
+          orbCtx.globalCompositeOperation = "source-over";
+          orbCtx.filter = "none";
+          orbCtx.globalAlpha = 1;
+          for (let j = 0; j < drawOrder.length; j += 1) {
+            const o = projectedById[drawOrder[j]];
+            drawOrb(orbCtx, o.x, o.y, o.r, o.fill, o.edge);
+          }
+          orbCtx.restore();
+
+          ctx.clearRect(0, 0, width, height);
+          ctx.save();
+          ctx.globalCompositeOperation = "source-over";
+          ctx.globalAlpha = 1;
+          const blurPx = HERO_ORBS.MASTER_BLUR_PX;
+          if (blurPx > 0 && useCssBlurFallback) {
+            ctx.filter = "none";
+            canvas.style.filter = "blur(" + blurPx + "px)";
+            canvas.style.webkitFilter = "blur(" + blurPx + "px)";
+          } else if (blurPx > 0) {
+            canvas.style.filter = "none";
+            canvas.style.webkitFilter = "none";
+            ctx.filter = "blur(" + blurPx + "px)";
+          } else {
+            canvas.style.filter = "none";
+            canvas.style.webkitFilter = "none";
+            ctx.filter = "none";
+          }
+          ctx.drawImage(orbLayer, 0, 0, width, height);
+          ctx.filter = "none";
+          ctx.globalAlpha = 1;
+          ctx.restore();
+
+          raf = window.requestAnimationFrame(tick);
+        }
+
+        resize();
+        window.addEventListener("resize", resize);
+        window.addEventListener(
+          "mousemove",
+          function (event) {
+            const rect = blobWrap ? blobWrap.getBoundingClientRect() : canvas.getBoundingClientRect();
+            cursorNx = (event.clientX - rect.left) / Math.max(rect.width, 1) - 0.5;
+            cursorNy = (event.clientY - rect.top) / Math.max(rect.height, 1) - 0.5;
+          },
+          { passive: true }
+        );
+        raf = window.requestAnimationFrame(tick);
+
+        window.addEventListener("beforeunload", function () {
+          cancelAnimationFrame(raf);
+        });
+
+        if (cursorRing && cursorDot && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          let mouseX = window.innerWidth / 2;
+          let mouseY = window.innerHeight / 2;
+          let ringX = mouseX;
+          let ringY = mouseY;
+
+          const moveCursor = function (event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            cursorDot.style.transform = "translate3d(" + mouseX + "px, " + mouseY + "px, 0) translate(-50%, -50%)";
+          };
+
+          const animateCursor = function () {
+            ringX += (mouseX - ringX) * 0.16;
+            ringY += (mouseY - ringY) * 0.16;
+            cursorRing.style.transform = "translate3d(" + ringX + "px, " + ringY + "px, 0) translate(-50%, -50%)";
+            window.requestAnimationFrame(animateCursor);
+          };
+
+          const hoverables = document.querySelectorAll("a, button");
+          hoverables.forEach(function (el) {
+            el.addEventListener("mouseenter", function () {
+              cursorRing.classList.add("is-hovering");
+              cursorDot.classList.add("is-hovering");
+            });
+            el.addEventListener("mouseleave", function () {
+              cursorRing.classList.remove("is-hovering");
+              cursorDot.classList.remove("is-hovering");
+            });
+          });
+
+          window.addEventListener("mousemove", moveCursor, { passive: true });
+          window.requestAnimationFrame(animateCursor);
+        }
+
+        const caseStudyCards = document.querySelectorAll(".case-study-card");
+        if (caseStudyCards.length) {
+          const cardObserver = new IntersectionObserver(
+            function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-inview");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.14 }
+          );
+          caseStudyCards.forEach(function (card, index) {
+            card.style.transitionDelay = String(index * 120) + "ms";
+            cardObserver.observe(card);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

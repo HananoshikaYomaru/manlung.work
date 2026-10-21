@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chinese Kinship Calculator 親戚稱呼計算機 | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="Free Chinese kinship calculator. Click relationship steps (father, mother, older or younger brother / sister, husband, wife, son, daughter) to find the correct Traditional Chinese kinship title — 伯父、姑母、堂嬸、外祖父、襟兄 and more."
+    />
+    <meta
+      name="keywords"
+      content="Chinese kinship calculator, 親戚稱呼計算機, 三姑六婆, Chinese family titles, Chinese family tree, Mandarin kinship terms, Cantonese kinship terms, Traditional Chinese family titles"
+    />
+    <meta property="og:url" content="https://manlung.work/tools/kinship" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chinese Kinship Calculator 親戚稱呼計算機 | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="Free Chinese kinship calculator — click relationship steps to find the correct Traditional Chinese title for any relative (伯父, 姑母, 堂嬸, 外祖父, 襟兄, …)."
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chinese Kinship Calculator 親戚稱呼計算機" />
+    <meta
+      name="twitter:description"
+      content="Free Chinese kinship calculator — click relationship steps to find the correct Traditional Chinese title for any relative."
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/tools/kinship/kinship-tool.css" />
+  </head>
+  <body>
+    <main class="kin-main">
+      <a class="kin-back" href="/tools/">← Tools</a>
+      <h1 class="kin-title">親戚稱呼計算機</h1>
+      <p class="kin-lead">
+        春節拜年或元宵節家庭聚會，總會有親屬前來拜訪，看著眼熟實則陌生的親戚對你說，<em>你該叫我什麼呀？</em>
+        逐步點選關係，計算機便會回答。
+      </p>
+
+      <section class="kin-calc" aria-label="Kinship calculator">
+        <div class="kin-display">
+          <p id="kin-chain" class="kin-chain" aria-live="polite">我</p>
+          <p id="kin-result" class="kin-result" aria-live="polite">—</p>
+          <p id="kin-error" class="kin-error"></p>
+        </div>
+
+        <div class="kin-toggles">
+          <div class="kin-toggle" role="group" aria-label="自己性別">
+            <button id="kin-gender-f" class="kin-toggle-btn is-active" type="button">女</button>
+            <button id="kin-gender-m" class="kin-toggle-btn" type="button">男</button>
+            <span class="kin-toggle-label">自己性別</span>
+          </div>
+          <div class="kin-toggle" role="group" aria-label="子女年齡（年長或年輕）">
+            <button id="kin-age-older" class="kin-toggle-btn is-active" type="button">年長</button>
+            <button id="kin-age-younger" class="kin-toggle-btn" type="button">年輕</button>
+            <span class="kin-toggle-label">下一代年齡</span>
+          </div>
+        </div>
+
+        <div class="kin-keypad" aria-label="Keypad">
+          <button class="kin-key kin-key-rel" data-op="F" type="button">父</button>
+          <button class="kin-key kin-key-rel" data-op="M" type="button">母</button>
+          <button class="kin-key kin-key-util" data-action="ce" type="button">CE</button>
+          <button class="kin-key kin-key-util" data-action="ac" type="button">AC</button>
+
+          <button class="kin-key kin-key-rel" data-op="BO" type="button">兄</button>
+          <button class="kin-key kin-key-rel" data-op="SO" type="button">姐</button>
+          <button class="kin-key kin-key-rel" data-op="H" type="button">夫</button>
+          <button class="kin-key kin-key-rel" data-op="W" type="button">妻</button>
+
+          <button class="kin-key kin-key-rel" data-op="BY" type="button">弟</button>
+          <button class="kin-key kin-key-rel" data-op="SY" type="button">妹</button>
+          <button class="kin-key kin-key-rel" data-op="SN" type="button">子</button>
+          <button class="kin-key kin-key-rel" data-op="DT" type="button">女</button>
+        </div>
+      </section>
+
+      <div class="kin-help">
+        <h2>怎樣使用</h2>
+        <p>
+          每一步代表「<em>目前對象的 …</em>」。例：先點 <code>父</code> 表示「我的父親」，再點 <code>父</code>
+          表示「父親的父親」，再點 <code>兄</code> 即「祖父的兄」＝<strong>伯祖父</strong>。
+        </p>
+        <ul>
+          <li><code>父</code> 母 = 父母；<code>兄/弟/姐/妹</code> = 已包含年齡。</li>
+          <li><code>夫/妻</code> = 配偶；<code>子/女</code> = 子女。</li>
+          <li>
+            <code>年長/年輕</code> 切換用於計算「<em>堂表兄弟姊妹</em>」時，子或女與自己的年齡關係（影響 堂兄 vs
+            堂弟）。
+          </li>
+          <li><code>CE</code> 刪除最後一步，<code>AC</code> 全部重置。</li>
+        </ul>
+
+        <h2>備註</h2>
+        <p>
+          中港臺各地的稱呼或有差異，計算機以常見漢語家族稱謂為準。如需確認，請複製名稱再查證。少數冷門關係（很深或交叉的姻親）若無對應俗稱，會以關係鏈方式顯示。
+        </p>
+      </div>
+
+      <aside class="kin-help kin-help-en" lang="en" aria-label="English overview">
+        <h2>Chinese kinship calculator (English)</h2>
+        <p>
+          Chinese family titles are famously specific. There is a different word for your father's older
+          brother (<strong>伯父</strong>) and his younger brother (<strong>叔父</strong>), and a different word
+          again for their wives (<strong>伯母</strong>, <strong>嬸母</strong>). Your mother's brother is
+          <strong>舅父</strong>, not 伯父. Your husband's father is <strong>公公</strong>, your wife's father is
+          <strong>岳父</strong>. There are dozens of these and they do not translate cleanly into English's
+          single word "uncle".
+        </p>
+        <p>
+          This tool composes the correct Traditional Chinese kinship title from a sequence of clicks. Each
+          button means "&hellip; of the current person". For example, the chain
+          <code>father → father → older brother → son (younger) → wife</code> resolves to
+          <strong>堂嬸 (tángshěn)</strong> — the wife of your paternal grandfather's older brother's younger
+          son.
+        </p>
+
+        <h2>What the buttons mean</h2>
+        <ul>
+          <li><code>父</code> father · <code>母</code> mother</li>
+          <li><code>兄</code> older brother · <code>弟</code> younger brother</li>
+          <li><code>姐</code> older sister · <code>妹</code> younger sister</li>
+          <li><code>夫</code> husband · <code>妻</code> wife</li>
+          <li><code>子</code> son · <code>女</code> daughter</li>
+          <li><code>女 / 男</code> sets your own gender · <code>年長 / 年輕</code> sets whether a child step
+            is older or younger (matters when computing cousin titles like 堂兄 vs 堂弟).</li>
+          <li><code>CE</code> removes the last step · <code>AC</code> resets everything.</li>
+        </ul>
+
+        <h2>Who this is for</h2>
+        <p>
+          Heritage learners trying to remember what to call relatives at Lunar New Year, students of
+          Mandarin or Cantonese learning the kinship vocabulary, translators handling family documents,
+          and anyone marrying into a Chinese family who keeps meeting cousins, aunts, and grand-uncles
+          whose titles never quite stick.
+        </p>
+
+        <h2>Notes</h2>
+        <p>
+          Kinship terms differ slightly across Mainland China, Hong Kong, and Taiwan. The calculator uses
+          common Traditional Chinese forms; please verify against local usage before formal use. Very
+          distant or unusual in-law relationships may not have a single conventional term and will be
+          shown as the descriptive chain instead.
+        </p>
+      </aside>
+    </main>
+
+    <script src="/tools/kinship/kinship-tool.js" defer></script>
+  </body>
+</html>

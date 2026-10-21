@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Passion Matrix — Free 30-Min Couples Activity</title>
+    <meta name="description" content="The free 30-min couples activity that reveals your hidden relationship blind spots. Map your shared passions together.">
+    <meta property="og:url" content="https://manlung.work/tools/passion-matrix">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shared Passion Matrix — Free 30-Min Couples Activity">
+    <meta property="og:description" content="Map shared leisure activities with your partner and find the overlap where both people genuinely enjoy the same thing.">
+    <meta property="og:image" content="https://manlung.work/images/tools/passion-matrix-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shared Passion Matrix — Free 30-Min Couples Activity">
+    <meta name="twitter:description" content="Map shared leisure activities with your partner and find the overlap where both people genuinely enjoy the same thing.">
+    <meta name="twitter:image" content="https://manlung.work/images/tools/passion-matrix-og.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --soft-ink: #555;
+            --muted: #767676;
+            --accent: #4b2e83;
+            --accent-soft: #f1eef7;
+            --line: #e8e8e8;
+            --paper: #f5f4f1;
+            --white-glass: rgba(255, 255, 255, 0.62);
+            --white-solid: rgba(255, 255, 255, 0.86);
+            --font-heading: "Instrument Serif", serif;
+            --grain-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E");
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Inter, "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.7;
+            mix-blend-mode: multiply;
+            background-image: var(--grain-svg);
+            background-size: 180px 180px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f8f7f5; }
+        ::-webkit-scrollbar-thumb { background: #c7c3d3; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8b8698; }
+
+        /* Banner */
+        #viral-banner {
+            background: var(--accent);
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Nav */
+        nav {
+            background: rgba(245,244,241,0.9);
+            border-bottom: 1px solid var(--line);
+            padding: 16px max(24px, 4vw);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 8px; }
+        .nav-brand i { font-size: 1.5rem; color: var(--accent); }
+        .nav-brand h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+            font-weight: 400;
+            color: var(--ink);
+            letter-spacing: 0;
+        }
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+        #lang-btn {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--soft-ink);
+            border: 1px solid var(--line);
+            padding: 6px 12px;
+            border-radius: 10px;
+            background: #fff;
+            cursor: pointer;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        #lang-btn:hover { color: var(--accent); border-color: #c9c0da; }
+
+        #export-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        #export-btn i { flex: none; }
+        #export-btn:hover { filter: brightness(0.96); }
+        #export-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .page-shell {
+            flex: 1;
+            width: min(1280px, 92vw);
+            margin: 0 auto;
+            padding: 2.5rem 0 3.5rem;
+        }
+
+        .tool-intro {
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .back-link:hover,
+        .back-link:focus-visible {
+            color: var(--accent);
+            border-bottom-color: #c9c0da;
+        }
+
+        .hero-kicker {
+            margin: 0 0 0.35rem;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .intro-title {
+            margin: 0 0 0.75rem;
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.6rem);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .intro-lead {
+            max-width: 760px;
+            margin: 0 0 1.15rem;
+            color: var(--soft-ink);
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .guide-card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--white-glass);
+            padding: 0.95rem 1rem;
+        }
+
+        .guide-card h2 {
+            margin: 0 0 0.45rem;
+            font-size: 1rem;
+            color: var(--ink);
+        }
+
+        .guide-card p,
+        .guide-card li {
+            color: var(--soft-ink);
+            line-height: 1.65;
+            font-size: 0.92rem;
+        }
+
+        .guide-card ol,
+        .guide-card ul {
+            padding-left: 1.15rem;
+        }
+
+        .guide-card li + li {
+            margin-top: 0.35rem;
+        }
+
+        /* Main layout */
+        main {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* Left panel */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            background: var(--white-glass);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: visible;
+            height: auto;
+        }
+
+        .setup-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,0.44);
+            flex-shrink: 0;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .names-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .field-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--soft-ink);
+            margin-bottom: 4px;
+        }
+        .text-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            font-family: inherit;
+            color: var(--ink);
+            background: #fff;
+        }
+        .text-input:focus { border-color: #b8aacd; box-shadow: 0 0 0 3px rgba(75,46,131,0.12); }
+        .notes-wrap { margin-top: 16px; }
+        textarea.text-input { resize: none; }
+        .setup-actions {
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .mini-btn.secondary {
+            border-color: var(--line);
+            background: #fff;
+            color: var(--soft-ink);
+        }
+        .mini-btn.secondary:hover,
+        .mini-btn.secondary:focus-visible {
+            color: var(--accent);
+            border-color: #c9c0da;
+            filter: none;
+        }
+
+        /* Checklist */
+        #checklist-container { overflow: visible; flex: none; padding-bottom: 20px; }
+        .checklist-header {
+            padding: 16px 20px 8px;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        #step2-hint { font-size: 0.75rem; color: var(--muted); }
+        #categories-root { padding: 0 12px; }
+        .explorer-tools {
+            padding: 8px 20px 16px;
+            display: grid;
+            gap: 10px;
+            background: rgba(255,255,255,0.88);
+            border-bottom: 1px solid var(--line);
+        }
+        .activity-search-wrap {
+            position: relative;
+        }
+        .activity-search-wrap i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+        #activity-search {
+            padding-left: 34px;
+        }
+        .custom-add {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 8px;
+        }
+        .mini-btn {
+            appearance: none;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 12px;
+            min-height: 36px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .mini-btn:hover,
+        .mini-btn:focus-visible {
+            filter: brightness(0.96);
+        }
+        #empty-results {
+            padding: 18px 20px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        /* Category accordion */
+        .cat-block {
+            margin-bottom: 16px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: visible;
+            background: #fff;
+        }
+        .cat-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .cat-header:hover { background: var(--accent-soft); }
+        .cat-header-left { display: flex; align-items: center; gap: 8px; }
+        .cat-header-left i { font-size: 1.25rem; color: var(--accent); }
+        .cat-header-left span { font-weight: 700; color: var(--ink); font-size: 0.9rem; }
+        .cat-caret { color: var(--muted); transition: transform 0.2s; font-size: 0.875rem; }
+        .cat-content { display: none; flex-direction: column; }
+        .cat-content.open { display: flex; }
+        .activity-item {
+            padding: 16px;
+            border-top: 1px solid var(--line);
+            transition: background 0.15s;
+        }
+        .activity-item:hover { background: rgba(255,255,255,0.68); }
+        .activity-top { display: flex; align-items: center; gap: 12px; }
+        .activity-top input[type=checkbox] {
+            width: 18px; height: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+        .activity-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--soft-ink);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Sliders */
+        .sliders-wrap { display: none; flex-direction: column; gap: 10px; margin-top: 12px; padding-left: 30px; }
+        .sliders-wrap.open { display: flex; }
+        .slider-row { display: flex; align-items: center; gap: 8px; }
+        .slider-name { font-size: 0.7rem; font-weight: 600; width: 36px; flex-shrink: 0; }
+        .slider-name.a { color: var(--accent); }
+        .slider-name.b { color: #8b5a65; }
+        .slider-bound { font-size: 0.7rem; color: var(--muted); }
+        .score-disp { font-size: 0.7rem; font-weight: 700; width: 16px; text-align: center; }
+        .score-disp.pos { color: #276749; }
+        .score-disp.neg { color: #9b2c2c; }
+        .score-disp.zero { color: var(--muted); }
+
+        input[type=range] { -webkit-appearance: none; flex: 1; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #fff; border: 2px solid var(--accent); cursor: pointer;
+            margin-top: -6px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #d8d6df; border-radius: 2px;
+        }
+        input[type=range]:focus { outline: none; }
+
+        /* Right panel */
+        .right-panel { display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+        #export-area {
+            background: var(--white-glass);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+        }
+
+        /* Export header (hidden in UI) */
+        #export-header { display: none; margin-bottom: 24px; text-align: center; }
+        #export-header h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 400; color: var(--ink); }
+        #export-subtitle { color: var(--muted); font-size: 0.875rem; margin-top: 4px; }
+        #export-notes-display {
+            margin-top: 12px; color: var(--soft-ink); background: #fff;
+            padding: 12px; border-radius: 8px; text-align: left;
+            font-size: 0.875rem; max-width: 672px; margin-left: auto; margin-right: auto;
+            white-space: pre-wrap; word-break: break-words;
+            border: 1px solid var(--line); line-height: 1.5;
+        }
+
+        /* Matrix canvas */
+        #matrix-canvas {
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: inset 0 1px 0 rgba(0,0,0,0.03);
+        }
+        .matrix-axis-labels {
+            display: flex;
+            align-items: center;
+            color: var(--muted);
+            min-height: 28px;
+        }
+        .matrix-axis-labels.top { justify-content: flex-start; }
+        .matrix-axis-labels.bottom { justify-content: flex-end; }
+        .grid-v { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #d8d6df; z-index: 0; }
+        .grid-h { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #d8d6df; z-index: 0; }
+        .q-bg-win { position: absolute; top: 0; right: 0; width: 50%; height: 50%; background: rgba(47,133,90,0.1); z-index: 0; border-top-right-radius: 12px; }
+        .q-bg-lose { position: absolute; bottom: 0; left: 0; width: 50%; height: 50%; background: rgba(155,44,44,0.09); z-index: 0; border-bottom-left-radius: 12px; }
+
+        .q-label {
+            position: absolute;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 8px;
+            z-index: 1;
+            backdrop-filter: blur(2px);
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.82);
+        }
+        #q-win  { top: 12px; right: 16px; color: #276749; }
+        #q-lose { bottom: 12px; left: 16px; color: #9b2c2c; }
+        #q-sac-a { top: 12px; left: 16px; color: #8a5a00; font-weight: 600; }
+        #q-sac-b { bottom: 12px; right: 16px; color: #8a5a00; font-weight: 600; }
+
+        .axis-num {
+            position: absolute;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--muted);
+            z-index: 1;
+        }
+        .axis-num.right  { top: 50%; right: 8px;  transform: translateY(-24px); }
+        .axis-num.left   { top: 50%; left: 8px;   transform: translateY(-24px); }
+        .axis-num.top    { top: 8px; left: 50%;   transform: translateX(8px); }
+        .axis-num.bottom { bottom: 8px; left: 50%; transform: translateX(8px); }
+
+        #axis-label-x {
+            font-size: 0.875rem; font-weight: 700; color: var(--accent);
+            background: rgba(255,255,255,0.72); padding: 2px 6px; border-radius: 6px;
+            border: 1px solid var(--line);
+        }
+        #axis-label-y {
+            font-size: 0.875rem; font-weight: 700; color: #8b5a65;
+            background: rgba(255,255,255,0.72); padding: 2px 6px; border-radius: 6px;
+            border: 1px solid var(--line);
+        }
+        #dots-container { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+
+        /* Dot styles (set via JS inline + class) */
+        .dot-transition { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .dot {
+            position: absolute; left: 0; top: 0;
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+            font-size: 15px;
+            line-height: 1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            pointer-events: auto; cursor: grab;
+            transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+            z-index: 30;
+            touch-action: none;
+        }
+        .dot:hover { transform: scale(1.5); }
+        .dot.dragging {
+            cursor: grabbing;
+            opacity: 0.92;
+            transform: scale(1.7);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.24), 0 0 0 6px rgba(75,46,131,0.13);
+        }
+        .dot-transition.is-dragging {
+            transition: none;
+            z-index: 120 !important;
+        }
+        .dot.green  { background: #2f855a; box-shadow: 0 0 0 4px rgba(47,133,90,0.16), 0 1px 3px rgba(0,0,0,0.2); }
+        .dot.red    { background: #9b2c2c; }
+        .dot.amber  { background: #b7791f; }
+        .dot.slate  { background: #8b8698; }
+        .dot.dark   { background: var(--ink); }
+
+        .dot-emoji,
+        .activity-emoji,
+        .record-emoji {
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        }
+        .activity-emoji,
+        .record-emoji {
+            flex: none;
+            margin-right: 0.35rem;
+        }
+
+        /* Insight box */
+        .insight-box {
+            margin-top: 24px;
+            padding: 16px;
+            background: #fff;
+            color: var(--soft-ink);
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            font-size: 0.875rem;
+            display: flex;
+            gap: 12px;
+        }
+        .insight-box strong { color: var(--ink); }
+        .insight-box i { font-size: 1.25rem; flex-shrink: 0; color: var(--accent); }
+
+        /* Step 3 */
+        #step3-container { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 24px; }
+        .step3-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .step3-header i { font-size: 1.25rem; color: #2f855a; }
+        .step3-header h3 { font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.5; padding-bottom: 2px; }
+        #step3-desc { font-size: 0.75rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; padding-bottom: 2px; }
+        #step3-items {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: visible;
+            background: #fff;
+        }
+        .step3-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .step3-table th,
+        .step3-table td {
+            border-bottom: 1px solid var(--line);
+            padding: 10px;
+            vertical-align: top;
+            font-size: 0.78rem;
+        }
+        .step3-table tr:last-child td { border-bottom: 0; }
+        .step3-table th {
+            background: #faf9f7;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-align: left;
+            text-transform: uppercase;
+        }
+        .step3-table th:nth-child(2),
+        .step3-table th:nth-child(3),
+        .step3-table td:nth-child(2),
+        .step3-table td:nth-child(3) {
+            width: 30%;
+        }
+        .step3-activity {
+            display: flex;
+            align-items: center;
+            color: #276749;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+        .step3-score {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.68rem;
+            font-weight: 500;
+        }
+        .dim-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+        .dim-opt {
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            font-weight: 500;
+            transition: background 0.15s, color 0.15s;
+            background: #fff;
+            color: var(--soft-ink);
+            line-height: 1.5;
+        }
+        .dim-opt:hover { background: var(--accent-soft); }
+        .dim-opt.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* Step 4 */
+        #step4-container {
+            margin-top: 24px;
+            background: #f7f4fb;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .step4-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .step4-header-left { display: flex; align-items: center; gap: 8px; }
+        .step4-header-left i { font-size: 1.5rem; color: var(--accent); }
+        #step4-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.5; padding-bottom: 2px; }
+        #step4-subtitle {
+            font-size: 0.7rem; font-weight: 500; color: var(--soft-ink);
+            background: #fff; padding: 4px 8px; border-radius: 8px;
+            border: 1px solid var(--line); line-height: 1.5;
+        }
+        #ranking-list { display: flex; flex-direction: column; gap: 10px; }
+        .rank-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 14px;
+            border-radius: 12px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .rank-left { display: flex; align-items: center; gap: 12px; }
+        .rank-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.875rem; font-weight: 700; flex-shrink: 0;
+        }
+        .rank-num.first { background: var(--accent); color: #fff; }
+        .rank-num.other { background: #f5f4f1; color: var(--muted); }
+        .rank-name { font-weight: 700; font-size: 0.875rem; color: var(--ink); display: flex; align-items: center; flex-wrap: wrap; gap: 6px; line-height: 1.5; }
+        .quick-win-badge {
+            background: #eee8f6; color: var(--accent);
+            font-size: 0.65rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 999px;
+            line-height: 1.5;
+        }
+        .rank-meta { display: flex; align-items: center; gap: 16px; font-size: 0.75rem; font-weight: 500; color: var(--muted); flex-wrap: wrap; }
+        .rank-meta span { display: flex; align-items: center; gap: 4px; line-height: 1.5; }
+        .rank-meta i { font-size: 15px; }
+        .rank-meta .heart { color: #8b5a65; }
+        .rank-meta .coin  { color: #8a5a00; }
+        .rank-meta .clock { color: var(--accent); }
+
+        /* Footer */
+        footer {
+            margin-top: 48px;
+            border-top: 1px solid var(--line);
+            background: rgba(255,255,255,0.36);
+        }
+        .footer-inner {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            text-align: center;
+        }
+        .footer-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
+        .footer-divider-line { height: 1px; width: 48px; background: #d8d6df; }
+        .footer-divider i { color: var(--accent); font-size: 1.1rem; }
+        #footer-title { font-family: var(--font-heading); font-size: 1.7rem; font-weight: 400; color: var(--ink); margin-bottom: 16px; }
+        #footer-body { font-size: 0.875rem; color: var(--soft-ink); line-height: 1.75; text-align: left; max-width: 640px; margin: 0 auto; }
+        #footer-body p + p { margin-top: 12px; }
+        #footer-cta { margin-top: 32px; font-size: 0.75rem; color: var(--muted); }
+        .share-panel {
+            margin: 28px auto 0;
+            max-width: 640px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.62);
+            padding: 14px;
+        }
+        .share-title {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .share-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        .share-btn {
+            appearance: none;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+            color: var(--ink);
+            min-height: 38px;
+            padding: 8px 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .share-btn:hover,
+        .share-btn:focus-visible {
+            border-color: #c9c0da;
+            color: var(--accent);
+        }
+        .share-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .share-btn.primary:hover,
+        .share-btn.primary:focus-visible {
+            color: #fff;
+            filter: brightness(0.96);
+        }
+        .share-btn i {
+            font-size: 1.05rem;
+        }
+        /* Tooltip */
+        #tooltip {
+            position: fixed;
+            display: none;
+            z-index: 100;
+            background: rgba(42,42,42,0.9);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        #tooltip-title { font-weight: 700; font-size: 0.875rem; margin-bottom: 4px; }
+        .tt-scores { display: flex; gap: 8px; }
+        #tooltip-a { color: #d8d6df; }
+        #tooltip-b { color: #f1d6de; }
+
+        /* Utility */
+        .hidden { display: none !important; }
+        .export-safe-text { line-height: 1.5 !important; padding-bottom: 2px !important; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .guide-grid { grid-template-columns: 1fr; }
+            main { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            nav { gap: 12px; padding: 12px 16px; }
+            .nav-brand { min-width: 0; }
+            .nav-brand h1 { font-size: 1.28rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .nav-actions { flex: none; gap: 8px; }
+            #export-btn {
+                width: 38px;
+                height: 38px;
+                padding: 0;
+                border-radius: 10px;
+            }
+            #export-btn-label { display: none; }
+            .page-shell { width: min(100% - 24px, 1280px); padding-top: 1.5rem; }
+            .names-grid { grid-template-columns: 1fr; }
+            #step3-items { overflow-x: auto; }
+            .step3-table { min-width: 620px; }
+            .rank-item { flex-direction: column; align-items: flex-start; }
+            .q-label { max-width: 44%; font-size: 0.62rem; line-height: 1.25; }
+            #axis-label-x,
+            #axis-label-y { font-size: 0.72rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="viral-banner"><span id="banner-text"></span></div>
+
+    <nav>
+        <div class="nav-brand">
+            <i class="ph-fill ph-intersect"></i>
+            <h1>Shared Passion Matrix</h1>
+        </div>
+        <div class="nav-actions">
+            <button id="lang-btn" onclick="toggleLang()">中文</button>
+            <button id="export-btn" onclick="exportToImage()">
+                <i class="ph ph-download-simple"></i>
+                <span id="export-btn-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="page-shell">
+    <section class="tool-intro" aria-labelledby="intro-title">
+        <a class="back-link" href="/tools/">← Tools</a>
+        <p id="intro-kicker" class="hero-kicker"></p>
+        <h1 id="intro-title" class="intro-title"></h1>
+        <p id="intro-lead" class="intro-lead"></p>
+        <div class="guide-grid" aria-label="Shared Passion Matrix guide">
+            <article class="guide-card">
+                <h2 id="guide-philosophy-title"></h2>
+                <p id="guide-philosophy-body"></p>
+            </article>
+            <article class="guide-card">
+                <h2 id="guide-how-title"></h2>
+                <ol id="guide-how-list"></ol>
+            </article>
+            <article class="guide-card">
+                <h2 id="guide-when-title"></h2>
+                <ul id="guide-when-list"></ul>
+            </article>
+        </div>
+    </section>
+
+    <main>
+        <!-- Left Column -->
+        <div class="left-panel">
+            <div class="setup-section">
+                <h2 id="step1-label" class="section-label"></h2>
+                <div class="names-grid">
+                    <div>
+                        <label id="label-a" class="field-label"></label>
+                        <input type="text" id="nameA" class="text-input">
+                    </div>
+                    <div>
+                        <label id="label-b" class="field-label"></label>
+                        <input type="text" id="nameB" class="text-input">
+                    </div>
+                </div>
+                <div class="notes-wrap">
+                    <label id="notes-label" class="field-label"></label>
+                    <textarea id="exportNotes" rows="2" class="text-input"></textarea>
+                </div>
+                <div class="setup-actions">
+                    <button type="button" id="clear-state-btn" class="mini-btn secondary"></button>
+                </div>
+            </div>
+            <div id="checklist-container">
+                <div class="checklist-header">
+                    <h2 id="step2-label" class="section-label" style="margin-bottom:0"></h2>
+                    <span id="step2-hint"></span>
+                </div>
+                <div class="explorer-tools">
+                    <div class="activity-search-wrap">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="search" id="activity-search" class="text-input">
+                    </div>
+                    <form id="custom-add-form" class="custom-add">
+                        <input type="text" id="custom-activity-input" class="text-input">
+                        <button type="submit" id="custom-add-btn" class="mini-btn"></button>
+                    </form>
+                </div>
+                <div id="categories-root"></div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-panel" id="matrix-export-wrapper">
+            <div id="export-area">
+
+                <div id="export-header">
+                    <h2>Shared Passion Matrix</h2>
+                    <p id="export-subtitle"></p>
+                    <div id="export-notes-display"></div>
+                </div>
+
+                <div class="matrix-axis-labels top">
+                    <div id="axis-label-y"></div>
+                </div>
+
+                <div id="matrix-canvas">
+                    <div class="grid-v"></div>
+                    <div class="grid-h"></div>
+                    <div class="q-bg-win"></div>
+                    <div class="q-bg-lose"></div>
+                    <div id="q-win"   class="q-label"></div>
+                    <div id="q-lose"  class="q-label"></div>
+                    <div id="q-sac-a" class="q-label"></div>
+                    <div id="q-sac-b" class="q-label"></div>
+                    <span class="axis-num right">+3</span>
+                    <span class="axis-num left">-3</span>
+                    <span class="axis-num top">+3</span>
+                    <span class="axis-num bottom">-3</span>
+                    <div id="dots-container"></div>
+                </div>
+
+                <div class="matrix-axis-labels bottom">
+                    <div id="axis-label-x"></div>
+                </div>
+
+                <div class="insight-box">
+                    <i class="ph-fill ph-lightbulb"></i>
+                    <div>
+                        <strong id="insight-label" class="export-safe-text"></strong>
+                        <span id="insight-text" class="export-safe-text"></span>
+                    </div>
+                </div>
+
+                <div id="step3-container" class="hidden">
+                    <div class="step3-header">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <h3 id="step3-title" class="export-safe-text"></h3>
+                    </div>
+                    <p id="step3-desc" class="export-safe-text"></p>
+                    <div id="step3-items"></div>
+                </div>
+
+                <div id="step4-container" class="hidden">
+                    <div class="step4-header">
+                        <div class="step4-header-left">
+                            <i class="ph-fill ph-trophy"></i>
+                            <h3 id="step4-title" class="export-safe-text"></h3>
+                        </div>
+                        <span id="step4-subtitle" class="export-safe-text"></span>
+                    </div>
+                    <div id="ranking-list"></div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-divider">
+                <div class="footer-divider-line"></div>
+                <i class="ph-fill ph-intersect"></i>
+                <div class="footer-divider-line"></div>
+            </div>
+            <h3 id="footer-title"></h3>
+            <div id="footer-body"></div>
+            <div class="share-panel" aria-label="Share this tool">
+                <p id="page-share-title" class="share-title"></p>
+                <div id="page-share-actions" class="share-actions"></div>
+            </div>
+            <p id="footer-cta"></p>
+        </div>
+    </footer>
+
+    <div id="tooltip">
+        <p id="tooltip-title"></p>
+        <div class="tt-scores">
+            <span id="tooltip-a"></span>
+            <span id="tooltip-b"></span>
+        </div>
+    </div>
+
+    <script>
+    const i18n = {
+        en: {
+            banner: "✨ The free 30-min couples activity that reveals your hidden relationship blind spots — try it together.",
+            exportBtn: "Export Image", langBtn: "中文",
+            introKicker: "Couples tool",
+            introTitle: "The Shared Passion Matrix",
+            introLead: "A practical matrix for finding leisure activities that create mutual emotional deposits instead of quiet sacrifice. It helps you notice where your genuine enjoyment overlaps, then gently try the best ideas in real life.",
+            guidePhilosophyTitle: "Core Philosophy",
+            guidePhilosophyBody: "Do not schedule an activity unless both partners are genuinely happy to do it. Forced companionship can look loving from the outside, but inside the relationship it often behaves like an emotional withdrawal.",
+            guideHowTitle: "How To Use It",
+            guideHowList: [
+                "Add possible activities from the explorer, including ideas you have never tried together.",
+                "Score each activity from -3 to +3 for both partners, then watch where it lands on the matrix.",
+                "Keep only the top-right Golden Deposit activities. Repackage or park anything that creates asymmetric sacrifice.",
+                "For each Golden Deposit, assess cost and time, then try it for two weeks before making it part of your weekly rhythm."
+            ],
+            guideWhenTitle: "When To Run It",
+            guideWhenList: [
+                "Quarterly, as a one-hour leisure review.",
+                "When life resets: a new city, job stage, season, or family rhythm.",
+                "When you feel like you are living parallel lives and shared topics are drying up."
+            ],
+            step1: "1. Setup", labelA: "Person A (X Axis)", labelB: "Person B (Y Axis)",
+            placeholderA: "Enter name…", placeholderB: "Enter name…",
+            defaultA: "Person A", defaultB: "Person B",
+            notesLabel: "Session goal / notes (included in export)",
+            notesPlaceholder: "e.g. Q3 2026 weekend activity planning…",
+            step2: "2. Activity Explorer", step2Hint: "Check to add to matrix",
+            searchPlaceholder: "Search activities...",
+            customPlaceholder: "Add your own activity... e.g. 🎾 Tennis night",
+            customAdd: "Add",
+            customCategory: "Your Ideas",
+            emptyResults: "No matching activities yet. Add your own idea above.",
+            clearState: "Clear saved session",
+            qWin: "Golden Deposit Zone (Win-Win)", qLose: "Bankruptcy Zone (Lose-Lose)",
+            qSacA: "Asymmetric Sacrifice (B enjoys / A suffers)",
+            qSacB: "Asymmetric Sacrifice (A enjoys / B suffers)",
+            insightLabel: "Insight: ",
+            insightEmpty: "Check and rate activities on the left to find your shared Golden Deposit Zone in the top-right quadrant.",
+            insightWin: (n) => `Great! You found <strong>${n}</strong> win-win activities. Scroll down to evaluate the 3rd dimension (cost & time).`,
+            insightNone: "No win-win activities yet. Watch out for activities in the asymmetric sacrifice zones — long-term forced participation quietly erodes the relationship.",
+            step3Title: "3. Golden Zone: 3rd Dimension (Time & Cost)",
+            step3Desc: "For activities in the win-win zone, check the real-world cost and time so you can choose what fits your week.",
+            step3Activity: "Activity",
+            step3Cost: "Cost",
+            step3Time: "Time",
+            costLabel: "💰 Cost", timeLabel: "⏳ Time",
+            costOpts: ["Free / Minimal", "Moderate", "Expensive"],
+            timeOpts: ["< 2h", "Half day", "Full day / Overnight"],
+            step4Title: "4. Easiest Shared Picks",
+            step4Subtitle: "Sorted by high enjoyment, low cost, low time",
+            quickWin: "Try This Week",
+            axisX: (n) => `${n} Enjoyment →`, axisY: (n) => `↑ ${n} Enjoyment`,
+            exportSubtitle: (a, b) => `${a} & ${b} — Shared Leisure Analysis`,
+            shareTitle: "Share",
+            shareText: "Try the Shared Passion Matrix with your partner.",
+            shareX: "X",
+            shareTelegram: "Telegram",
+            shareThreads: "Threads",
+            shareFacebook: "Facebook",
+            shareLink: "Link",
+            shareCopied: "Copied",
+            footerTitle: "The Philosophy Behind This Tool",
+            footerBody: [
+                "Every relationship runs on an invisible emotional account. Shared leisure is one of the most powerful deposits you can make — but only when both people genuinely enjoy the activity. Time spent together where one person is secretly suffering isn't a deposit. It's a withdrawal.",
+                "The matrix makes this visible. Activities in the top-right quadrant — where both partners score positively — are your Golden Deposit Zone. These are the only activities worth scheduling regularly. Activities where one person thrives while the other endures create Asymmetric Sacrifice: the suffering partner accumulates quiet resentment, while the enjoying partner remains unaware.",
+                "The goal isn't to find activities you both merely tolerate. It's to discover the surprising overlap between two people's genuine passions — and to keep exploring that overlap as you both grow and change."
+            ],
+            footerCta: "Share this tool with your partner. It takes 30 minutes and costs nothing.",
+        },
+        zh: {
+            banner: "✨ 免費30分鐘，揭開你們關係中隱藏的盲點——一起試試。",
+            exportBtn: "導出分析圖", langBtn: "EN",
+            introKicker: "伴侶工具",
+            introTitle: "伴侶休閒交集矩陣",
+            introLead: "一個用來尋找「雙向情感存款」的休閒決策工具。它幫你們看見真正愉悅的重疊位置，再用輕鬆、低壓的方式把好點子帶進現實生活。",
+            guidePhilosophyTitle: "核心理念",
+            guidePhilosophyBody: "任何共同活動，除非雙方都由衷高興，否則不應該被排入日常。勉強陪伴看似體貼，但在關係裡往往不是存款，而是情感提款。",
+            guideHowTitle: "如何使用",
+            guideHowList: [
+                "先從左側靈感清單加入活動，也可以加入從未一起嘗試過的新提案。",
+                "雙方各自用 -3 至 +3 評估愉悅度，觀察活動落入哪一個象限。",
+                "只保留右上角的黃金存款活動；任何不對稱犧牲都先封存，或重新包裝成雙方都期待的版本。",
+                "針對黃金存款活動評估金錢與時間成本，先試行兩週，再決定是否放入每週節奏。"
+            ],
+            guideWhenTitle: "使用時機",
+            guideWhenList: [
+                "每季度花一小時做一次共同休閒整理。",
+                "搬到新城市、工作階段改變、季節轉換或家庭節奏重置時。",
+                "當你們開始各玩各的、共同話題變少、情感存款停滯時。"
+            ],
+            step1: "1. 基礎設定", labelA: "對象 A（X 軸）", labelB: "對象 B（Y 軸）",
+            placeholderA: "輸入名字…", placeholderB: "輸入名字…",
+            defaultA: "男方", defaultB: "女方",
+            notesLabel: "本次檢討目標 / 備註（將保留於截圖）",
+            notesPlaceholder: "例如：2026年Q3 週末活動規劃…",
+            step2: "2. 探索清單", step2Hint: "勾選以加入矩陣",
+            searchPlaceholder: "搜尋活動...",
+            customPlaceholder: "加入你自己的活動... 例如 🎾 打網球",
+            customAdd: "加入",
+            customCategory: "你們的提案",
+            emptyResults: "暫時沒有符合的活動。可以在上方加入自己的提案。",
+            clearState: "清除已儲存內容",
+            qWin: "黃金存款區（雙贏）", qLose: "惡性提款區（雙輸）",
+            qSacA: "不對稱犧牲（B享受/A痛苦）", qSacB: "不對稱犧牲（A享受/B痛苦）",
+            insightLabel: "洞察建議：",
+            insightEmpty: "請在左側勾選並評分活動，共同尋找位於右上角的「黃金存款區」休閒活動。",
+            insightWin: (n) => `太棒了！你們找到了 <strong>${n}</strong> 個雙贏的活動。請在下方進行「第三維度（金錢與時間）」評估。`,
+            insightNone: "目前還沒有雙方都享受的活動。注意落在左上和右下的「不對稱犧牲區」，長期勉強對方參與會成為關係的隱形炸彈。",
+            step3Title: "3. 黃金存款區：第三維度評估（Time & Cost）",
+            step3Desc: "針對成功落入雙贏區的活動，請進一步看看金錢與時間是否適合你們最近的生活節奏。",
+            step3Activity: "活動",
+            step3Cost: "金錢成本",
+            step3Time: "時間成本",
+            costLabel: "💰 金錢", timeLabel: "⏳ 時間",
+            costOpts: ["極低/免費", "中等", "昂貴"],
+            timeOpts: ["< 2h", "半天", "全天/過夜"],
+            step4Title: "4. 最容易開始的共同選擇",
+            step4Subtitle: "依照「高愉悅、低成本、低耗時」排序",
+            quickWin: "本週可試",
+            axisX: (n) => `${n} 愉悅度 →`, axisY: (n) => `↑ ${n} 愉悅度`,
+            exportSubtitle: (a, b) => `${a} & ${b} 的休閒交集分析`,
+            shareTitle: "分享",
+            shareText: "和你的伴侶一起試試伴侶休閒交集矩陣。",
+            shareX: "X",
+            shareTelegram: "Telegram",
+            shareThreads: "Threads",
+            shareFacebook: "Facebook",
+            shareLink: "連結",
+            shareCopied: "已複製",
+            footerTitle: "這個工具背後的理念",
+            footerBody: [
+                "每段關係都在運行一個看不見的情感帳戶。共同休閒是最有力的存款方式之一——但前提是雙方都真心享受這個活動。如果其中一方在暗自忍耐，那段時光不是存款，而是提款。",
+                "這個矩陣讓一切變得可見。落在右上象限的活動——雙方評分皆為正數——就是你們的「黃金存款區」，也是唯一值得定期安排的活動。當一方享受、另一方忍耐時，就形成了「不對稱犧牲」：忍耐的一方會積累無聲的怨恨，而享受的一方卻渾然不覺。",
+                "這個工具的目標，不是找到雙方都勉強接受的活動，而是發現兩個人真實熱情之間令人驚喜的交集——並隨著彼此的成長，持續探索這個交集。"
+            ],
+            footerCta: "把這個工具分享給你的伴侶。只需30分鐘，完全免費。",
+        }
+    };
+
+    const activityCategories = [
+        {
+            en: "Sports & Fitness", zh: "運動與健身", icon: "ph-sneaker",
+            items: [
+                "Aerobic exercise", "Archery", "Badminton", "Baseball (watching)", "Baseball (playing)",
+                "Basketball (watching)", "Basketball (playing)", "Bicycling", "Bodybuilding", "Bowling",
+                "Boxing (watching)", "Football (watching)", "Football (playing)", "Golf", "Handball",
+                "Hockey (watching)", "Hockey (playing)", "Judo", "Karate", "Rowing", "Shuffleboard",
+                "Softball (watching)", "Softball (playing)", "Table tennis", "Tennis", "Volleyball",
+                "Wrestling (watching)", "Running", "Trail running", "Weight training", "CrossFit",
+                "Spin class", "Pilates", "Yoga", "HIIT workouts", "Rock climbing", "Bouldering",
+                "Pickleball", "Futsal", "Soccer (watching)", "Soccer (playing)", "Squash", "Martial arts class"
+            ]
+        },
+        {
+            en: "Outdoors & Water", zh: "戶外與水上活動", icon: "ph-mountains",
+            items: [
+                "Boating", "Camping", "Canoeing", "Fishing", "Gardening", "Hiking", "Horseback riding",
+                "Horse shows (watching)", "Horse racing", "Sailing", "Shooting (skeet, trap)",
+                "Shooting (pistol)", "Sightseeing", "Skiing (water)", "Skiing (downhill)",
+                "Skiing (cross-country)", "Skin diving (snorkeling)", "Skydiving", "Snowmobiling",
+                "Spearfishing", "Surfing", "Swirming", "Tobogganing", "Yachting", "Beach day",
+                "Paddleboarding", "Kayaking", "Wild swimming", "Backpacking", "Glamping",
+                "Birdwatching", "Stargazing", "Foraging", "Picnics", "Outdoor photography",
+                "National park visits", "Dog walking", "Sunset walks", "Ice skating", "Roller skating"
+            ]
+        },
+        {
+            en: "Arts, Music & Performance", zh: "藝術、音樂與表演", icon: "ph-ticket",
+            items: [
+                "Acting", "Plays", "Sculpting", "Singing", "Concerts (rock music)",
+                "Concerts (classical music)", "Concerts (country music)", "Dancing (ballroom)",
+                "Dancing (square)", "Dancing (rock)", "Video production", "Video movies (watching)",
+                "Photography", "Film photography", "Pottery", "Painting", "Watercolor painting",
+                "Drawing", "Calligraphy", "Creative writing", "Poetry reading", "Open mic nights",
+                "Stand-up comedy", "Musicals", "Opera", "Jazz clubs", "Live DJ sets", "Karaoke",
+                "Podcast recording", "Short film making", "Museum visits", "Gallery hopping",
+                "Street art walks", "Craft fairs", "DIY home decor"
+            ]
+        },
+        {
+            en: "Games, Cards & Play", zh: "遊戲、紙牌與玩樂", icon: "ph-game-controller",
+            items: [
+                "Bridge", "Canasta", "Checkers", "Chess", "Computer games", "Cribbage", "Croquet",
+                "Rummy", "Video games", "Amusement parks", "Board games", "Card games",
+                "Trivia nights", "Escape rooms", "Murder mystery games", "Dungeons & Dragons",
+                "Mahjong", "Puzzle games", "Jigsaw puzzles", "Arcade games", "VR games",
+                "Nintendo Switch games", "PS5 games", "Xbox games", "Mobile games", "Co-op video games",
+                "Fantasy sports", "Mini golf", "Laser tag", "Paintball", "Bowling league"
+            ]
+        },
+        {
+            en: "Food, Home & Everyday Life", zh: "飲食、居家與日常", icon: "ph-coffee",
+            items: [
+                "Dining out", "Shopping (clothes)", "Shopping (groceries)", "Shopping (vehicles)",
+                "Cooking dinner together", "Baking", "Trying new restaurants", "Street food exploring",
+                "Coffee shop visits", "Tea tasting", "Wine tasting", "Cocktail making", "Farmers markets",
+                "Home organizing", "Home renovation planning", "Furniture hunting", "Thrifting",
+                "Plant care", "Meal prep", "Barbecue", "Brunch", "Dessert hunting", "Hot pot",
+                "Sushi making", "Food festivals", "Cooking classes", "Hosting friends", "Date-night walks"
+            ]
+        },
+        {
+            en: "Collecting, Making & Hobbies", zh: "收藏、手作與嗜好", icon: "ph-palette",
+            items: [
+                "Antique collecting", "Auto customizing", "Coin collecting", "Stamp collecting",
+                "Taxidermy", "Weaving", "Woodworking", "Astronomy", "Sewing", "Knitting",
+                "Crochet", "Model building", "LEGO building", "3D printing", "Electronics tinkering",
+                "Drone flying", "Candle making", "Soap making", "Jewelry making", "Leather crafting",
+                "Bookbinding", "Scrapbooking", "Collecting vinyl records", "Collecting sneakers",
+                "Collecting watches", "Collecting toys", "Aquarium keeping", "Terrarium building",
+                "Cosplay", "Costume making", "Magic tricks"
+            ]
+        },
+        {
+            en: "Media, Screens & Culture", zh: "影視、螢幕與文化", icon: "ph-monitor-play",
+            items: [
+                "Television", "Computer", "Netflix", "Streaming movies", "Streaming series",
+                "Documentaries", "Anime", "K-dramas", "YouTube deep dives", "Twitch streams",
+                "Sports highlights", "Movie marathons", "Classic films", "Horror movies",
+                "Science fiction movies", "Book club", "Audiobooks", "Podcasts", "News discussion",
+                "Language learning apps", "Online lectures", "Virtual museum tours", "Memes and internet culture",
+                "Digital art browsing", "Music discovery", "Album listening nights", "True crime shows"
+            ]
+        },
+        {
+            en: "Travel, Vehicles & Experiences", zh: "旅行、交通與體驗", icon: "ph-airplane-tilt",
+            items: [
+                "Auto racing (watching)", "Flying (as pilot)", "Flying (as passenger)", "Road trips",
+                "Weekend getaways", "Staycations", "Train trips", "Ferry rides", "Cruises",
+                "Food tours", "Architecture walks", "Historical tours", "Theme parks", "Zoos",
+                "Aquariums", "Botanical gardens", "Spa days", "Massage", "Hot springs",
+                "Camping road trips", "City exploring", "Neighborhood walks", "Local festivals",
+                "Seasonal markets", "Conventions", "Comic cons", "Car shows", "Boat shows",
+                "Air shows", "Flea markets"
+            ]
+        },
+        {
+            en: "Learning, Faith & Service", zh: "學習、信仰與服務", icon: "ph-books",
+            items: [
+                "Bible study", "Church services", "Computer programming", "Online courses",
+                "Career planning", "Financial planning", "Investing discussions", "Volunteering",
+                "Community service", "Mentoring", "Language exchange", "Public speaking practice",
+                "Debate nights", "Writing workshops", "Meditation group", "Therapy homework",
+                "Couples check-in", "Journaling", "Reading nonfiction", "Science talks",
+                "History talks", "Philosophy discussion", "Parenting classes", "First aid classes",
+                "CPR training", "Cooking for charity", "Environmental cleanup"
+            ]
+        },
+    ];
+
+    const zhActivityLabels = {
+        "Aerobic exercise": "有氧運動", "Archery": "射箭", "Badminton": "羽毛球",
+        "Baseball (watching)": "看棒球", "Baseball (playing)": "打棒球",
+        "Basketball (watching)": "看籃球", "Basketball (playing)": "打籃球",
+        "Bicycling": "踩單車", "Bodybuilding": "健美", "Bowling": "保齡球",
+        "Boxing (watching)": "看拳擊", "Football (watching)": "看美式足球",
+        "Football (playing)": "打美式足球", "Golf": "高爾夫球", "Handball": "手球",
+        "Hockey (watching)": "看冰球", "Hockey (playing)": "打冰球", "Judo": "柔道",
+        "Karate": "空手道", "Rowing": "划艇", "Shuffleboard": "沙狐球",
+        "Softball (watching)": "看壘球", "Softball (playing)": "打壘球",
+        "Table tennis": "乒乓球", "Tennis": "網球", "Volleyball": "排球",
+        "Wrestling (watching)": "看摔角", "Running": "跑步", "Trail running": "越野跑",
+        "Weight training": "重量訓練", "CrossFit": "CrossFit 訓練", "Spin class": "飛輪課",
+        "Pilates": "皮拉提斯", "Yoga": "瑜伽", "HIIT workouts": "高強度間歇訓練",
+        "Rock climbing": "攀岩", "Bouldering": "抱石", "Pickleball": "匹克球",
+        "Futsal": "五人足球", "Soccer (watching)": "看足球", "Soccer (playing)": "踢足球",
+        "Squash": "壁球", "Martial arts class": "武術課",
+
+        "Boating": "泛舟 / 坐船", "Camping": "露營", "Canoeing": "獨木舟", "Fishing": "釣魚",
+        "Gardening": "園藝", "Hiking": "行山", "Horseback riding": "騎馬",
+        "Horse shows (watching)": "看馬術表演", "Horse racing": "賽馬", "Sailing": "帆船",
+        "Shooting (skeet, trap)": "飛靶射擊", "Shooting (pistol)": "手槍射擊",
+        "Sightseeing": "觀光", "Skiing (water)": "滑水", "Skiing (downhill)": "高山滑雪",
+        "Skiing (cross-country)": "越野滑雪", "Skin diving (snorkeling)": "浮潛",
+        "Skydiving": "跳傘", "Snowmobiling": "雪地摩托", "Spearfishing": "魚叉捕魚",
+        "Surfing": "衝浪", "Swirming": "游泳", "Tobogganing": "坐雪橇", "Yachting": "遊艇",
+        "Beach day": "海灘日", "Paddleboarding": "直立板", "Kayaking": "皮划艇",
+        "Wild swimming": "野外游泳", "Backpacking": "背包遠足", "Glamping": "豪華露營",
+        "Birdwatching": "觀鳥", "Stargazing": "觀星", "Foraging": "野外採集",
+        "Picnics": "野餐", "Outdoor photography": "戶外攝影",
+        "National park visits": "去國家公園", "Dog walking": "遛狗",
+        "Sunset walks": "黃昏散步", "Ice skating": "溜冰", "Roller skating": "滾軸溜冰",
+
+        "Acting": "演戲", "Plays": "看話劇", "Sculpting": "雕塑", "Singing": "唱歌",
+        "Concerts (rock music)": "搖滾音樂會", "Concerts (classical music)": "古典音樂會",
+        "Concerts (country music)": "鄉村音樂會", "Dancing (ballroom)": "社交舞",
+        "Dancing (square)": "方塊舞", "Dancing (rock)": "搖滾舞",
+        "Video production": "影片製作", "Video movies (watching)": "看電影 / 影片",
+        "Photography": "攝影", "Film photography": "菲林攝影", "Pottery": "陶藝",
+        "Painting": "繪畫", "Watercolor painting": "水彩畫", "Drawing": "素描",
+        "Calligraphy": "書法", "Creative writing": "創意寫作", "Poetry reading": "詩歌朗讀",
+        "Open mic nights": "開放咪表演夜", "Stand-up comedy": "棟篤笑",
+        "Musicals": "音樂劇", "Opera": "歌劇", "Jazz clubs": "爵士樂俱樂部",
+        "Live DJ sets": "現場 DJ", "Karaoke": "卡拉 OK", "Podcast recording": "錄 Podcast",
+        "Short film making": "拍短片", "Museum visits": "逛博物館",
+        "Gallery hopping": "逛畫廊", "Street art walks": "街頭藝術散步",
+        "Craft fairs": "手作市集", "DIY home decor": "DIY 家居佈置",
+
+        "Bridge": "橋牌", "Canasta": "卡納斯塔牌", "Checkers": "西洋跳棋",
+        "Chess": "國際象棋", "Computer games": "電腦遊戲", "Cribbage": "克里比奇紙牌",
+        "Croquet": "槌球", "Rummy": "拉密牌", "Video games": "電子遊戲",
+        "Amusement parks": "遊樂園", "Board games": "桌遊", "Card games": "紙牌遊戲",
+        "Trivia nights": "問答遊戲夜", "Escape rooms": "密室逃脫",
+        "Murder mystery games": "推理劇本遊戲", "Dungeons & Dragons": "龍與地下城",
+        "Mahjong": "麻將", "Puzzle games": "解謎遊戲", "Jigsaw puzzles": "拼圖",
+        "Arcade games": "街機遊戲", "VR games": "VR 遊戲",
+        "Nintendo Switch games": "Nintendo Switch 遊戲", "PS5 games": "PS5 遊戲",
+        "Xbox games": "Xbox 遊戲", "Mobile games": "手機遊戲",
+        "Co-op video games": "合作電子遊戲", "Fantasy sports": "夢幻體育",
+        "Mini golf": "迷你高爾夫", "Laser tag": "雷射槍戰", "Paintball": "彩彈",
+        "Bowling league": "保齡球聯賽",
+
+        "Dining out": "外出用餐", "Shopping (clothes)": "買衣服",
+        "Shopping (groceries)": "買日用品 / 食材", "Shopping (vehicles)": "看車 / 買車",
+        "Cooking dinner together": "一起煮晚餐", "Baking": "烘焙",
+        "Trying new restaurants": "試新餐廳", "Street food exploring": "探索街頭小食",
+        "Coffee shop visits": "去咖啡店", "Tea tasting": "品茶", "Wine tasting": "品酒",
+        "Cocktail making": "調雞尾酒", "Farmers markets": "農夫市集",
+        "Home organizing": "整理家居", "Home renovation planning": "家居裝修規劃",
+        "Furniture hunting": "找家具", "Thrifting": "逛二手店", "Plant care": "照顧植物",
+        "Meal prep": "備餐", "Barbecue": "燒烤", "Brunch": "早午餐",
+        "Dessert hunting": "找甜品", "Hot pot": "打邊爐 / 火鍋", "Sushi making": "做壽司",
+        "Food festivals": "美食節", "Cooking classes": "烹飪課", "Hosting friends": "招呼朋友",
+        "Date-night walks": "約會散步",
+
+        "Antique collecting": "古董收藏", "Auto customizing": "汽車改裝",
+        "Coin collecting": "硬幣收藏", "Stamp collecting": "郵票收藏",
+        "Taxidermy": "動物標本", "Weaving": "編織", "Woodworking": "木工",
+        "Astronomy": "天文", "Sewing": "縫紉", "Knitting": "棒針編織",
+        "Crochet": "鉤針編織", "Model building": "模型製作", "LEGO building": "砌 LEGO",
+        "3D printing": "3D 打印", "Electronics tinkering": "電子小製作",
+        "Drone flying": "飛無人機", "Candle making": "做蠟燭", "Soap making": "做手工皂",
+        "Jewelry making": "做首飾", "Leather crafting": "皮革手作",
+        "Bookbinding": "手工裝訂", "Scrapbooking": "剪貼簿", "Collecting vinyl records": "黑膠唱片收藏",
+        "Collecting sneakers": "波鞋收藏", "Collecting watches": "手錶收藏",
+        "Collecting toys": "玩具收藏", "Aquarium keeping": "養水族箱",
+        "Terrarium building": "做玻璃植物箱", "Cosplay": "Cosplay",
+        "Costume making": "做服裝", "Magic tricks": "魔術",
+
+        "Television": "看電視", "Computer": "電腦", "Netflix": "Netflix",
+        "Streaming movies": "串流電影", "Streaming series": "串流劇集",
+        "Documentaries": "紀錄片", "Anime": "動畫", "K-dramas": "韓劇",
+        "YouTube deep dives": "YouTube 深度影片", "Twitch streams": "Twitch 直播",
+        "Sports highlights": "體育精華", "Movie marathons": "電影馬拉松",
+        "Classic films": "經典電影", "Horror movies": "恐怖片",
+        "Science fiction movies": "科幻電影", "Book club": "讀書會",
+        "Audiobooks": "有聲書", "Podcasts": "Podcast", "News discussion": "討論新聞",
+        "Language learning apps": "語言學習 App", "Online lectures": "網上講座",
+        "Virtual museum tours": "線上博物館導覽", "Memes and internet culture": "迷因與網絡文化",
+        "Digital art browsing": "瀏覽數碼藝術", "Music discovery": "發掘新音樂",
+        "Album listening nights": "專輯聆聽夜", "True crime shows": "真實犯罪節目",
+
+        "Auto racing (watching)": "看賽車", "Flying (as pilot)": "飛行（當飛行員）",
+        "Flying (as passenger)": "飛行（當乘客）", "Road trips": "公路旅行",
+        "Weekend getaways": "週末小旅行", "Staycations": "Staycation",
+        "Train trips": "火車旅行", "Ferry rides": "坐渡輪", "Cruises": "郵輪",
+        "Food tours": "美食導賞", "Architecture walks": "建築散步",
+        "Historical tours": "歷史導賞", "Theme parks": "主題樂園", "Zoos": "動物園",
+        "Aquariums": "水族館", "Botanical gardens": "植物園", "Spa days": "Spa 日",
+        "Massage": "按摩", "Hot springs": "溫泉", "Camping road trips": "露營公路旅行",
+        "City exploring": "城市探索", "Neighborhood walks": "社區散步",
+        "Local festivals": "本地節慶", "Seasonal markets": "季節市集",
+        "Conventions": "展會 / 大會", "Comic cons": "動漫展", "Car shows": "車展",
+        "Boat shows": "船展", "Air shows": "航空展", "Flea markets": "跳蚤市場",
+
+        "Bible study": "聖經研讀", "Church services": "教會崇拜",
+        "Computer programming": "電腦編程", "Online courses": "網上課程",
+        "Career planning": "職涯規劃", "Financial planning": "財務規劃",
+        "Investing discussions": "投資討論", "Volunteering": "做義工",
+        "Community service": "社區服務", "Mentoring": "指導 / Mentoring",
+        "Language exchange": "語言交換", "Public speaking practice": "演講練習",
+        "Debate nights": "辯論夜", "Writing workshops": "寫作工作坊",
+        "Meditation group": "冥想小組", "Therapy homework": "治療功課",
+        "Couples check-in": "伴侶定期對話", "Journaling": "寫日記",
+        "Reading nonfiction": "讀非小說", "Science talks": "科學講座",
+        "History talks": "歷史講座", "Philosophy discussion": "哲學討論",
+        "Parenting classes": "育兒課", "First aid classes": "急救課",
+        "CPR training": "心肺復甦訓練", "Cooking for charity": "為慈善煮食",
+        "Environmental cleanup": "環境清潔行動",
+    };
+
+    const activityDB = {
+        en: activityCategories.map(({ en, icon, items }) => ({
+            category: en,
+            icon,
+            items: items.map(item => ({ key: item, label: item }))
+        })),
+        zh: activityCategories.map(({ zh, icon, items }) => ({
+            category: zh,
+            icon,
+            items: items.map(item => ({ key: item, label: zhActivityLabels[item] || item }))
+        }))
+    };
+    </script>
+
+    <script>
+    const STORAGE_KEY = "shared-passion-matrix-state-v1";
+    let lang = 'en';
+    let selectedActivities = {};
+    const customActivities = { en: [], zh: [] };
+    const nameA = () => document.getElementById('nameA');
+    const nameB = () => document.getElementById('nameB');
+
+    function readSavedState() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function saveState() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                lang,
+                selectedActivities,
+                customActivities,
+                nameA: nameA()?.value || '',
+                nameB: nameB()?.value || '',
+                notes: document.getElementById('exportNotes')?.value || ''
+            }));
+        } catch (_) {}
+    }
+
+    function applySavedState(state) {
+        if (!state) return;
+        if (state.lang === 'en' || state.lang === 'zh') lang = state.lang;
+        if (state.selectedActivities && typeof state.selectedActivities === 'object') {
+            selectedActivities = state.selectedActivities;
+        }
+        if (state.customActivities?.en) customActivities.en = state.customActivities.en;
+        if (state.customActivities?.zh) customActivities.zh = state.customActivities.zh;
+        if (typeof state.nameA === 'string' && state.nameA) nameA().value = state.nameA;
+        if (typeof state.nameB === 'string' && state.nameB) nameB().value = state.nameB;
+        if (typeof state.notes === 'string') document.getElementById('exportNotes').value = state.notes;
+    }
+
+    function clearSavedState() {
+        localStorage.removeItem(STORAGE_KEY);
+        selectedActivities = {};
+        customActivities.en = [];
+        customActivities.zh = [];
+        document.getElementById('activity-search').value = '';
+        document.getElementById('custom-activity-input').value = '';
+        document.getElementById('exportNotes').value = '';
+        applyI18n();
+        renderChecklist();
+        updateMatrix();
+    }
+
+    function toggleLang() {
+        const currentA = nameA().value;
+        const currentB = nameB().value;
+        const currentNotes = document.getElementById('exportNotes').value;
+        lang = lang === 'en' ? 'zh' : 'en';
+        document.getElementById('html-root').lang = lang === 'en' ? 'en' : 'zh-HK';
+        applyI18n();
+        nameA().value = currentA;
+        nameB().value = currentB;
+        document.getElementById('exportNotes').value = currentNotes;
+        renderChecklist();
+        saveState();
+        updateMatrix();
+    }
+
+    function applyI18n() {
+        const t = i18n[lang];
+        document.getElementById('banner-text').textContent = t.banner;
+        document.getElementById('export-btn-label').textContent = t.exportBtn;
+        document.getElementById('lang-btn').textContent = t.langBtn;
+        document.getElementById('intro-kicker').textContent = t.introKicker;
+        document.getElementById('intro-title').textContent = t.introTitle;
+        document.getElementById('intro-lead').textContent = t.introLead;
+        document.getElementById('guide-philosophy-title').textContent = t.guidePhilosophyTitle;
+        document.getElementById('guide-philosophy-body').textContent = t.guidePhilosophyBody;
+        document.getElementById('guide-how-title').textContent = t.guideHowTitle;
+        document.getElementById('guide-how-list').innerHTML = t.guideHowList.map(item => `<li>${item}</li>`).join('');
+        document.getElementById('guide-when-title').textContent = t.guideWhenTitle;
+        document.getElementById('guide-when-list').innerHTML = t.guideWhenList.map(item => `<li>${item}</li>`).join('');
+        document.getElementById('step1-label').textContent = t.step1;
+        document.getElementById('label-a').textContent = t.labelA;
+        document.getElementById('label-b').textContent = t.labelB;
+        document.getElementById('notes-label').textContent = t.notesLabel;
+        document.getElementById('exportNotes').placeholder = t.notesPlaceholder;
+        document.getElementById('step2-label').textContent = t.step2;
+        document.getElementById('step2-hint').textContent = t.step2Hint;
+        document.getElementById('activity-search').placeholder = t.searchPlaceholder;
+        document.getElementById('custom-activity-input').placeholder = t.customPlaceholder;
+        document.getElementById('custom-add-btn').textContent = t.customAdd;
+        document.getElementById('clear-state-btn').textContent = t.clearState;
+        document.getElementById('q-win').textContent = t.qWin;
+        document.getElementById('q-lose').textContent = t.qLose;
+        document.getElementById('q-sac-a').textContent = t.qSacA;
+        document.getElementById('q-sac-b').textContent = t.qSacB;
+        document.getElementById('insight-label').textContent = t.insightLabel;
+        document.getElementById('insight-text').textContent = t.insightEmpty;
+        document.getElementById('step3-title').textContent = t.step3Title;
+        document.getElementById('step3-desc').textContent = t.step3Desc;
+        document.getElementById('step4-title').textContent = t.step4Title;
+        document.getElementById('step4-subtitle').textContent = t.step4Subtitle;
+        document.getElementById('footer-title').textContent = t.footerTitle;
+        document.getElementById('footer-body').innerHTML = t.footerBody.map(p => `<p>${p}</p>`).join('');
+        document.getElementById('footer-cta').textContent = t.footerCta;
+        document.getElementById('page-share-title').textContent = t.shareTitle;
+        nameA().placeholder = t.placeholderA;
+        nameB().placeholder = t.placeholderB;
+        nameA().value = t.defaultA;
+        nameB().value = t.defaultB;
+        renderShareActions(document.getElementById('page-share-actions'));
+        updateAxisLabels();
+    }
+
+    function updateAxisLabels() {
+        const t = i18n[lang];
+        const nA = nameA().value || t.defaultA;
+        const nB = nameB().value || t.defaultB;
+        document.getElementById('axis-label-x').textContent = t.axisX(nA);
+        document.getElementById('axis-label-y').textContent = t.axisY(nB);
+        document.querySelectorAll('.name-a-label').forEach(el => el.textContent = nA.substring(0, 4));
+        document.querySelectorAll('.name-b-label').forEach(el => el.textContent = nB.substring(0, 4));
+    }
+
+    function inferActivityEmoji(item, fallback = "✨") {
+        const text = item.toLowerCase();
+        const rules = [
+            [/acting|plays|musicals|opera|comedy|open mic/, "🎭"], [/aerobic|exercise|running|trail|hiit|crossfit/, "🏃"], [/amusement|theme park/, "🎡"],
+            [/antique|coin|stamp|collecting/, "🏺"], [/archery/, "🏹"], [/astronomy/, "🔭"],
+            [/auto|vehicles|car shows|road trips?/, "🏎️"], [/baseball|softball/, "⚾"], [/basketball/, "🏀"],
+            [/bible|church/, "⛪"], [/boating|canoeing|rowing|sailing|yachting/, "⛵"],
+            [/bodybuilding/, "🏋️"], [/bowling/, "🎳"], [/boxing|wrestling|judo|karate/, "🥋"],
+            [/bridge|canasta|cribbage|rummy/, "🃏"], [/checkers|chess/, "♟️"],
+            [/fishing|spearfishing/, "🎣"], [/flying/, "✈️"], [/football/, "🏈"],
+            [/gardening|plant|botanical/, "🌿"], [/handball|volleyball/, "🏐"], [/hockey/, "🏒"],
+            [/horse/, "🐎"], [/sculpting|pottery/, "🗿"], [/shooting|archery|paintball/, "🎯"],
+            [/shuffleboard|croquet/, "🏑"], [/sightseeing/, "🗺️"], [/singing/, "🎤"],
+            [/skydiving/, "🪂"], [/snowmobiling|tobogganing/, "🛷"], [/swirming|swimming|wild swimming/, "🏊"],
+            [/table tennis/, "🏓"], [/taxidermy/, "🦌"], [/television|video movies/, "📺"],
+            [/video games|computer games|co-op|nintendo|switch|ps5|xbox|vr games|arcade/, "🎮"], [/video production|short film/, "🎥"],
+            [/weaving|knitting|crochet|sewing/, "🧶"], [/woodworking|furniture/, "🪚"],
+            [/ski|snow|滑雪/, "⛷️"], [/climb|bouldering|抱石|攀岩/, "🧗"], [/hik|trek|backpacking|行山|登山/, "🥾"],
+            [/gym|weight|健身|重訓/, "🏋️"], [/run|marathon|慢跑|馬拉松/, "🏃"], [/cycl|單車/, "🚴"],
+            [/surf|diving|潛水|衝浪/, "🏄"], [/golf|高爾夫/, "⛳"], [/badminton|tennis|羽毛球|網球/, "🎾"],
+            [/yoga|pilates|瑜伽|皮拉提斯/, "🧘"], [/camp|露營/, "⛺"], [/cinema|film|movie|電影/, "🎬"],
+            [/television|tv|netflix|streaming|anime|k-dramas|youtube|twitch|documentaries|劇集/, "📺"], [/concert|演唱會/, "🎤"], [/theatre|musical|舞台劇|音樂劇/, "🎭"],
+            [/art|gallery|design|painting|drawing|calligraphy|digital art|美術|設計|展/, "🎨"], [/karaoke|ktv|唱歌/, "🎶"],
+            [/board|murder|dungeons|mahjong|trivia|escape|puzzle|桌遊|劇本殺/, "🎲"], [/gaming|video games|computer games|手遊|遊戲/, "🎮"],
+            [/dining|restaurant|brunch|hot pot|sushi|food tour|餐廳/, "🍽️"], [/street food|小吃/, "🍜"], [/cook|meal prep|barbecue|下廚|煮飯/, "🍳"],
+            [/bak|dessert|烘焙|甜點/, "🧁"], [/wine|cocktail|bar|品酒|酒吧/, "🍷"],
+            [/market|thrifting|flea|市集|跳蚤/, "🛍️"], [/shopping|fashion|買衣|商場/, "🛒"], [/café|cafe|coffee|tea|咖啡/, "☕"],
+            [/spa|massage|hot springs|按摩/, "💆"], [/declutter|organis|整理|斷捨離/, "🧹"],
+            [/travel|air|train|ferry|cruise|出國|旅行/, "✈️"], [/hotel|staycation|短途/, "🏨"], [/road trip|公路/, "🚗"],
+            [/beach|海灘/, "🏖️"], [/workshop|diy|craft|making|3d printing|electronics|工作坊/, "🛠️"],
+            [/language|語言/, "🗣️"], [/invest|finance|投資|理財/, "📈"], [/book|reading|audiobooks|讀書/, "📚"],
+            [/photo|攝影|街拍/, "📷"], [/volunteer|community|charity|mentoring|cleanup|志工|公益/, "🤝"], [/course|skill|classes|online lectures|課程|學習/, "🎓"],
+            [/planning|future|journaling|check-in|人生規劃|未來/, "🧭"]
+        ];
+        return rules.find(([pattern]) => pattern.test(text))?.[1] || fallback;
+    }
+
+    function parseCustomActivity(rawValue) {
+        const value = rawValue.trim().replace(/\s+/g, ' ');
+        const emojiMatch = value.match(/^(\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?)*)\s*(.*)$/u);
+
+        if (!emojiMatch) {
+            return { item: value, emoji: inferActivityEmoji(value) };
+        }
+
+        const item = emojiMatch[2].trim();
+        return {
+            item,
+            emoji: emojiMatch[1]
+        };
+    }
+
+    function getItemKey(entry) {
+        return typeof entry === 'string' ? entry : entry.key;
+    }
+
+    function getItemLabel(entry) {
+        return typeof entry === 'string' ? entry : entry.label;
+    }
+
+    function findActivityEntry(key) {
+        return [...activityDB[lang].flatMap(category => category.items), ...customActivities[lang]]
+            .find(entry => getItemKey(entry) === key);
+    }
+
+    function getActivityLabel(key) {
+        return getItemLabel(findActivityEntry(key) || key);
+    }
+
+    function ensureActivityData(itemKey, active = false, emoji = inferActivityEmoji(itemKey)) {
+        if (!selectedActivities[itemKey]) {
+            selectedActivities[itemKey] = { active, emoji, scoreA: 0, scoreB: 0, cost: i18n[lang].costOpts[0], time: i18n[lang].timeOpts[0] };
+        } else if (active) {
+            selectedActivities[itemKey].active = true;
+        }
+        if (!selectedActivities[itemKey].emoji) selectedActivities[itemKey].emoji = emoji;
+        return selectedActivities[itemKey];
+    }
+
+    function renderActivityItem(entry, content, emoji) {
+        const itemKey = getItemKey(entry);
+        const itemLabel = getItemLabel(entry);
+        const data = ensureActivityData(itemKey, false, emoji);
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'activity-item';
+
+        const topRow = document.createElement('div');
+        topRow.className = 'activity-top';
+
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = data.active;
+
+        const lbl = document.createElement('label');
+        lbl.className = 'activity-label';
+        const emojiSpan = document.createElement('span');
+        emojiSpan.className = 'activity-emoji';
+        emojiSpan.textContent = data.emoji;
+        lbl.appendChild(emojiSpan);
+        lbl.append(document.createTextNode(itemLabel));
+        lbl.onclick = () => cb.click();
+
+        topRow.appendChild(cb);
+        topRow.appendChild(lbl);
+
+        const slidersWrap = document.createElement('div');
+        slidersWrap.className = 'sliders-wrap' + (data.active ? ' open' : '');
+
+        const nA = nameA().value || i18n[lang].defaultA;
+        const nB = nameB().value || i18n[lang].defaultB;
+
+        slidersWrap.innerHTML = `
+            <div class="slider-row">
+                <span class="slider-name a name-a-label">${nA.substring(0,4)}</span>
+                <span class="slider-bound">-3</span>
+                <input type="range" min="-3" max="3" value="${data.scoreA}" class="slider-a">
+                <span class="slider-bound">+3</span>
+                <span class="score-disp ${data.scoreA > 0 ? 'pos' : data.scoreA < 0 ? 'neg' : 'zero'}">${data.scoreA > 0 ? '+' + data.scoreA : data.scoreA}</span>
+            </div>
+            <div class="slider-row">
+                <span class="slider-name b name-b-label">${nB.substring(0,4)}</span>
+                <span class="slider-bound">-3</span>
+                <input type="range" min="-3" max="3" value="${data.scoreB}" class="slider-b">
+                <span class="slider-bound">+3</span>
+                <span class="score-disp ${data.scoreB > 0 ? 'pos' : data.scoreB < 0 ? 'neg' : 'zero'}">${data.scoreB > 0 ? '+' + data.scoreB : data.scoreB}</span>
+            </div>`;
+
+        const setDisp = (el, val) => {
+            el.textContent = val > 0 ? '+' + val : val;
+            el.className = 'score-disp ' + (val > 0 ? 'pos' : val < 0 ? 'neg' : 'zero');
+        };
+
+        slidersWrap.querySelector('.slider-a').oninput = e => {
+            data.scoreA = parseInt(e.target.value, 10);
+            setDisp(slidersWrap.querySelector('.slider-row:first-child .score-disp'), data.scoreA);
+            saveState();
+            updateMatrix();
+        };
+        slidersWrap.querySelector('.slider-b').oninput = e => {
+            data.scoreB = parseInt(e.target.value, 10);
+            setDisp(slidersWrap.querySelector('.slider-row:last-child .score-disp'), data.scoreB);
+            saveState();
+            updateMatrix();
+        };
+
+        cb.onchange = e => {
+            data.active = e.target.checked;
+            slidersWrap.classList.toggle('open', data.active);
+            saveState();
+            updateMatrix();
+        };
+
+        itemDiv.appendChild(topRow);
+        itemDiv.appendChild(slidersWrap);
+        content.appendChild(itemDiv);
+    }
+
+    function renderChecklist() {
+        const t = i18n[lang];
+        const root = document.getElementById('categories-root');
+        root.innerHTML = '';
+        const query = (document.getElementById('activity-search')?.value || '').trim().toLowerCase();
+        const categoryEmoji = {
+            "ph-sneaker": "🏃",
+            "ph-ticket": "🎭",
+            "ph-coffee": "☕",
+            "ph-airplane-tilt": "✈️",
+            "ph-books": "📚",
+            "ph-mountains": "🥾",
+            "ph-game-controller": "🎮",
+            "ph-palette": "🎨",
+            "ph-monitor-play": "📺",
+            "ph-dots-three-circle": "✨",
+            "ph-list-checks": "✨",
+            "ph-sparkle": "✨"
+        };
+        const customCategory = { category: t.customCategory, icon: "ph-sparkle", items: customActivities[lang] };
+        const categories = [...activityDB[lang], customCategory];
+        let renderedCount = 0;
+
+        categories.forEach((category, cIdx) => {
+            const visibleItems = category.items.filter(item => {
+                const key = getItemKey(item).toLowerCase();
+                const label = getItemLabel(item).toLowerCase();
+                return key.includes(query) || label.includes(query);
+            });
+            if (query && visibleItems.length === 0) return;
+            if (!query && category.items.length === 0) return;
+
+            const catDiv = document.createElement('div');
+            catDiv.className = 'cat-block';
+
+            const header = document.createElement('button');
+            header.className = 'cat-header';
+            header.innerHTML = `<div class="cat-header-left"><i class="ph ${category.icon}"></i><span>${category.category}</span></div><i class="ph-bold ph-caret-down cat-caret" id="caret-${cIdx}"></i>`;
+
+            const content = document.createElement('div');
+            content.id = `content-${cIdx}`;
+            content.className = 'cat-content';
+
+            header.onclick = () => {
+                const open = content.classList.toggle('open');
+                document.getElementById(`caret-${cIdx}`).style.transform = open ? 'rotate(180deg)' : '';
+            };
+
+            visibleItems.forEach(item => {
+                renderedCount++;
+                renderActivityItem(item, content, inferActivityEmoji(`${getItemKey(item)} ${getItemLabel(item)}`, categoryEmoji[category.icon] || "✨"));
+            });
+
+            catDiv.appendChild(header);
+            catDiv.appendChild(content);
+            root.appendChild(catDiv);
+        });
+
+        // Open first category
+        if (renderedCount === 0) {
+            const empty = document.createElement('div');
+            empty.id = 'empty-results';
+            empty.textContent = t.emptyResults;
+            root.appendChild(empty);
+        }
+
+        const firstBlock = root.querySelector('.cat-block');
+        const first = firstBlock?.querySelector('.cat-content');
+        const firstCaret = firstBlock?.querySelector('.cat-caret');
+        if (first) {
+            first.classList.add('open');
+            if (firstCaret) firstCaret.style.transform = 'rotate(180deg)';
+        }
+    }
+
+    function allActivityNames() {
+        return [
+            ...activityDB[lang].flatMap(category => category.items),
+            ...customActivities[lang]
+        ];
+    }
+
+    function addCustomActivity(value) {
+        const parsed = parseCustomActivity(value);
+        const item = parsed.item;
+        if (!item) return;
+
+        const existing = allActivityNames().find(entry =>
+            getItemKey(entry).toLowerCase() === item.toLowerCase() ||
+            getItemLabel(entry).toLowerCase() === item.toLowerCase()
+        );
+        const activityName = existing ? getItemKey(existing) : item;
+
+        if (!existing) customActivities[lang].push({ key: activityName, label: item });
+        const data = ensureActivityData(activityName, true, parsed.emoji || inferActivityEmoji(activityName));
+        if (parsed.emoji) data.emoji = parsed.emoji;
+
+        document.getElementById('activity-search').value = '';
+        document.getElementById('custom-activity-input').value = '';
+        renderChecklist();
+        saveState();
+        updateMatrix();
+    }
+    </script>
+
+    <script>
+    function getPinOffset(index, count) {
+        if (count <= 1) return { x: 0, y: 0 };
+
+        if (count === 2) {
+            return { x: index === 0 ? -26 : 26, y: 0 };
+        }
+
+        const pinsPerRing = 8;
+        const ring = Math.floor(index / pinsPerRing);
+        const ringIndex = index % pinsPerRing;
+        const pinsInRing = Math.min(pinsPerRing, count - ring * pinsPerRing);
+        const radius = 32 + ring * 24;
+        const angleOffset = ring % 2 === 0 ? 0 : Math.PI / pinsInRing;
+        const angle = -Math.PI / 2 + angleOffset + (Math.PI * 2 * ringIndex / pinsInRing);
+
+        return {
+            x: Math.round(Math.cos(angle) * radius),
+            y: Math.round(Math.sin(angle) * radius)
+        };
+    }
+
+    function scoreToPercent(score) {
+        return Math.max(5, Math.min(95, ((score + 3) / 6 * 90) + 5));
+    }
+
+    function pointerToScores(clientX, clientY) {
+        const canvas = document.getElementById('matrix-canvas');
+        const rect = canvas.getBoundingClientRect();
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+        const xPercent = clamp(((clientX - rect.left) / rect.width) * 100, 5, 95);
+        const yPercent = clamp(((rect.bottom - clientY) / rect.height) * 100, 5, 95);
+
+        return {
+            scoreA: clamp(Math.round(((xPercent - 5) / 90) * 6 - 3), -3, 3),
+            scoreB: clamp(Math.round(((yPercent - 5) / 90) * 6 - 3), -3, 3)
+        };
+    }
+
+    function startPinDrag(event, name, data, dot, wrapper, offset) {
+        if (event.button !== undefined && event.button !== 0) return;
+        event.preventDefault();
+
+        const tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'none';
+        try { dot.setPointerCapture?.(event.pointerId); } catch (_) {}
+        dot.classList.add('dragging');
+        wrapper.classList.add('is-dragging');
+
+        const dotRect = dot.getBoundingClientRect();
+        const grabOffset = {
+            x: event.clientX - (dotRect.left + dotRect.width / 2),
+            y: event.clientY - (dotRect.top + dotRect.height / 2)
+        };
+        const start = { x: event.clientX, y: event.clientY };
+
+        const movePin = moveEvent => {
+            moveEvent.preventDefault();
+            const dx = moveEvent.clientX - start.x;
+            const dy = moveEvent.clientY - start.y;
+            wrapper.style.transform = `translate(${offset.x + dx}px, ${offset.y + dy}px)`;
+        };
+
+        const releasePin = releaseEvent => {
+            try { dot.releasePointerCapture?.(event.pointerId); } catch (_) {}
+            dot.removeEventListener('pointermove', movePin);
+            dot.removeEventListener('pointerup', releasePin);
+            dot.removeEventListener('pointercancel', cancelPin);
+            dot.classList.remove('dragging');
+            wrapper.classList.remove('is-dragging');
+
+            const scores = pointerToScores(releaseEvent.clientX - grabOffset.x, releaseEvent.clientY - grabOffset.y);
+            data.scoreA = scores.scoreA;
+            data.scoreB = scores.scoreB;
+            renderChecklist();
+            saveState();
+            updateMatrix();
+        };
+
+        const cancelPin = () => {
+            try { dot.releasePointerCapture?.(event.pointerId); } catch (_) {}
+            dot.removeEventListener('pointermove', movePin);
+            dot.removeEventListener('pointerup', releasePin);
+            dot.removeEventListener('pointercancel', cancelPin);
+            dot.classList.remove('dragging');
+            wrapper.classList.remove('is-dragging');
+            updateMatrix();
+        };
+
+        dot.addEventListener('pointermove', movePin);
+        dot.addEventListener('pointerup', releasePin);
+        dot.addEventListener('pointercancel', cancelPin);
+    }
+
+    function updateMatrix() {
+        const t = i18n[lang];
+        const dc = document.getElementById('dots-container');
+        dc.innerHTML = '';
+        let winWin = 0, active = 0;
+        const nA = nameA().value || t.defaultA;
+        const nB = nameB().value || t.defaultB;
+        const tooltip = document.getElementById('tooltip');
+        const activeEntries = Object.entries(selectedActivities).filter(([, data]) => data.active);
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+        const coordinateGroups = activeEntries.reduce((groups, [name, data]) => {
+            const key = `${data.scoreA},${data.scoreB}`;
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(name);
+            return groups;
+        }, {});
+
+        activeEntries.forEach(([name, data]) => {
+            const displayName = getActivityLabel(name);
+            active++;
+            if (data.scoreA > 0 && data.scoreB > 0) winWin++;
+
+            const lp = scoreToPercent(data.scoreA);
+            const bp = scoreToPercent(data.scoreB);
+            const group = coordinateGroups[`${data.scoreA},${data.scoreB}`];
+            const groupIndex = group.indexOf(name);
+            const rawOffset = getPinOffset(groupIndex, group.length);
+            const homeX = dc.clientWidth * (lp / 100);
+            const homeY = dc.clientHeight * (1 - (bp / 100));
+            const offset = {
+                x: Math.round(clamp(rawOffset.x, 16 - homeX, dc.clientWidth - 16 - homeX)),
+                y: Math.round(clamp(rawOffset.y, 16 - homeY, dc.clientHeight - 16 - homeY))
+            };
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'dot-transition';
+            wrapper.style.cssText = `position:absolute;left:calc(${lp}% - 13px);bottom:calc(${bp}% + 13px);transform:translate(${offset.x}px, ${offset.y}px);pointer-events:none;`;
+            wrapper.style.zIndex = String(30 + groupIndex);
+
+            const dot = document.createElement('div');
+            dot.className = 'dot ' + (data.scoreA > 0 && data.scoreB > 0 ? 'green' : data.scoreA < 0 && data.scoreB < 0 ? 'red' : data.scoreA === 0 && data.scoreB === 0 ? 'dark' : 'amber');
+            dot.setAttribute('aria-label', `${displayName}: ${data.scoreA}, ${data.scoreB}`);
+            const dotEmoji = document.createElement('span');
+            dotEmoji.className = 'dot-emoji';
+            dotEmoji.textContent = data.emoji || inferActivityEmoji(name);
+            dot.appendChild(dotEmoji);
+            dot.addEventListener('pointerdown', event => startPinDrag(event, name, data, dot, wrapper, offset));
+
+            dot.addEventListener('mouseenter', () => {
+                const r = dot.getBoundingClientRect();
+                document.getElementById('tooltip-title').textContent = `${data.emoji || inferActivityEmoji(name)} ${displayName}`;
+                document.getElementById('tooltip-a').textContent = `${nA}: ${data.scoreA > 0 ? '+' : ''}${data.scoreA}`;
+                document.getElementById('tooltip-b').textContent = `${nB}: ${data.scoreB > 0 ? '+' : ''}${data.scoreB}`;
+                tooltip.style.cssText = 'display:block;left:0;top:0;opacity:1;visibility:hidden;';
+                const tt = tooltip.getBoundingClientRect();
+                const left = clamp(r.left + 24, 12, window.innerWidth - tt.width - 12);
+                const top = clamp(r.top - 10, 12, window.innerHeight - tt.height - 12);
+                tooltip.style.cssText = `display:block;left:${left}px;top:${top}px;opacity:1;visibility:visible;`;
+            });
+            dot.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = '0';
+                setTimeout(() => { if (tooltip.style.opacity === '0') tooltip.style.display = 'none'; }, 200);
+            });
+
+            wrapper.appendChild(dot);
+            dc.appendChild(wrapper);
+        });
+
+        const insightEl = document.getElementById('insight-text');
+        insightEl.innerHTML = active === 0 ? t.insightEmpty : winWin > 0 ? t.insightWin(winWin) : t.insightNone;
+        updateStep3(winWin);
+    }
+
+    function updateStep3(winWin) {
+        const t = i18n[lang];
+        const items = document.getElementById('step3-items');
+        items.innerHTML = '';
+        const candidates = Object.entries(selectedActivities)
+            .filter(([, data]) => data.active && data.scoreA > 0 && data.scoreB > 0);
+
+        if (candidates.length) {
+            const table = document.createElement('table');
+            table.className = 'step3-table';
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>${t.step3Activity}</th>
+                        <th>${t.step3Cost}</th>
+                        <th>${t.step3Time}</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>`;
+
+            const tbody = table.querySelector('tbody');
+            candidates.forEach(([name, data]) => {
+                const displayName = getActivityLabel(name);
+                const row = document.createElement('tr');
+                const activityCell = document.createElement('td');
+                const activityName = document.createElement('span');
+                activityName.className = 'step3-activity export-safe-text';
+                const recordEmoji = document.createElement('span');
+                recordEmoji.className = 'record-emoji';
+                recordEmoji.textContent = data.emoji || inferActivityEmoji(name);
+                activityName.appendChild(recordEmoji);
+                activityName.append(document.createTextNode(displayName));
+                const score = document.createElement('span');
+                score.className = 'step3-score export-safe-text';
+                score.textContent = `(${data.scoreA > 0 ? '+' : ''}${data.scoreA}, ${data.scoreB > 0 ? '+' : ''}${data.scoreB})`;
+                activityCell.appendChild(activityName);
+                activityCell.appendChild(score);
+
+                const makeCell = (type, opts, cur) => {
+                    const cell = document.createElement('td');
+                    const optsWrap = document.createElement('div');
+                    optsWrap.className = 'dim-opts';
+                    opts.forEach(option => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'dim-opt' + (cur === option ? ' active' : '');
+                        btn.textContent = option;
+                        btn.addEventListener('click', () => setDimension(name, type, option));
+                        optsWrap.appendChild(btn);
+                    });
+                    cell.appendChild(optsWrap);
+                    return cell;
+                };
+
+                row.appendChild(activityCell);
+                row.appendChild(makeCell('cost', t.costOpts, data.cost));
+                row.appendChild(makeCell('time', t.timeOpts, data.time));
+                tbody.appendChild(row);
+            });
+            items.appendChild(table);
+        }
+
+        document.getElementById('step3-container').classList.toggle('hidden', winWin === 0);
+        updateRanking(winWin);
+    }
+
+    function setDimension(name, type, val) {
+        selectedActivities[name][type] = val;
+        saveState();
+        updateMatrix();
+    }
+
+    function updateRanking(winWin) {
+        const t = i18n[lang];
+        const container = document.getElementById('step4-container');
+        const list = document.getElementById('ranking-list');
+        list.innerHTML = '';
+        if (winWin === 0) { container.classList.add('hidden'); return; }
+
+        const cMap = { [t.costOpts[0]]: 2, [t.costOpts[1]]: 1.5, [t.costOpts[2]]: 1 };
+        const tMap = { [t.timeOpts[0]]: 2, [t.timeOpts[1]]: 1.5, [t.timeOpts[2]]: 1 };
+
+        const candidates = Object.entries(selectedActivities)
+            .filter(([, d]) => d.active && d.scoreA > 0 && d.scoreB > 0)
+            .map(([name, d]) => {
+                const enjoy = d.scoreA + d.scoreB;
+                const easeMultiplier = ((cMap[d.cost] || 1) + (tMap[d.time] || 1)) / 2;
+                return { name, d, enjoy, rankScore: enjoy * easeMultiplier };
+            })
+            .sort((a, b) => b.rankScore - a.rankScore || b.enjoy - a.enjoy);
+
+        container.classList.remove('hidden');
+        candidates.forEach(({ name, d, enjoy }, idx) => {
+            const displayName = getActivityLabel(name);
+            const el = document.createElement('div');
+            el.className = 'rank-item';
+
+            const left = document.createElement('div');
+            left.className = 'rank-left';
+            const num = document.createElement('div');
+            num.className = `rank-num ${idx === 0 ? 'first' : 'other'}`;
+            num.textContent = idx + 1;
+            const rankName = document.createElement('div');
+            rankName.className = 'rank-name export-safe-text';
+            const recordEmoji = document.createElement('span');
+            recordEmoji.className = 'record-emoji';
+            recordEmoji.textContent = d.emoji || inferActivityEmoji(name);
+            rankName.appendChild(recordEmoji);
+            rankName.append(document.createTextNode(displayName));
+            if (idx === 0) {
+                const badge = document.createElement('span');
+                badge.className = 'quick-win-badge export-safe-text';
+                badge.textContent = t.quickWin;
+                rankName.appendChild(badge);
+            }
+            left.appendChild(num);
+            left.appendChild(rankName);
+
+            const meta = document.createElement('div');
+            meta.className = 'rank-meta';
+            [
+                ['ph-heart heart', `+${enjoy}`],
+                ['ph-coins coin', d.cost],
+                ['ph-hourglass-high clock', d.time]
+            ].forEach(([iconClass, text]) => {
+                const span = document.createElement('span');
+                const icon = document.createElement('i');
+                icon.className = `ph-fill ${iconClass}`;
+                span.appendChild(icon);
+                span.append(document.createTextNode(` ${text}`));
+                meta.appendChild(span);
+            });
+
+            el.appendChild(left);
+            el.appendChild(meta);
+            list.appendChild(el);
+        });
+    }
+
+    const shareTargets = [
+        { id: 'x', icon: 'ph-x-logo', labelKey: 'shareX' },
+        { id: 'telegram', icon: 'ph-telegram-logo', labelKey: 'shareTelegram' },
+        { id: 'threads', icon: 'ph-threads-logo', labelKey: 'shareThreads' },
+        { id: 'facebook', icon: 'ph-facebook-logo', labelKey: 'shareFacebook' },
+        { id: 'link', icon: 'ph-link-simple', labelKey: 'shareLink' }
+    ];
+
+    function getShareUrl() {
+        return window.location.href.split('#')[0];
+    }
+
+    function renderShareActions(container) {
+        const t = i18n[lang];
+        container.innerHTML = '';
+        shareTargets.forEach(target => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'share-btn';
+            btn.dataset.shareTarget = target.id;
+            btn.innerHTML = `<i class="ph ${target.icon}"></i><span>${t[target.labelKey]}</span>`;
+            btn.addEventListener('click', () => shareToTarget(target.id, btn));
+            container.appendChild(btn);
+        });
+    }
+
+    function shareToTarget(target, button) {
+        const t = i18n[lang];
+        const url = getShareUrl();
+        const text = t.shareText;
+        const encodedUrl = encodeURIComponent(url);
+        const encodedText = encodeURIComponent(text);
+        const shareUrls = {
+            x: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+            telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`,
+            threads: `https://www.threads.net/intent/post?text=${encodeURIComponent(`${text} ${url}`)}`,
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
+        };
+
+        if (target === 'link') {
+            navigator.clipboard?.writeText(url).then(() => {
+                const label = button.querySelector('span');
+                const old = label.textContent;
+                label.textContent = t.shareCopied;
+                setTimeout(() => { label.textContent = old; }, 1400);
+            }).catch(() => window.prompt(t.shareLink, url));
+            return;
+        }
+
+        window.open(shareUrls[target], '_blank', 'noopener,noreferrer,width=720,height=640');
+    }
+
+    function downloadExport(dataUrl) {
+        const a = document.createElement('a');
+        a.download = `Passion_Matrix_${new Date().toISOString().slice(0,10)}.png`;
+        a.href = dataUrl;
+        a.click();
+    }
+
+    function exportToImage() {
+        const t = i18n[lang];
+        const btn = document.getElementById('export-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="ph ph-spinner"></i>';
+
+        const area = document.getElementById('export-area');
+        const header = document.getElementById('export-header');
+        const notesDisp = document.getElementById('export-notes-display');
+        const notesVal = document.getElementById('exportNotes').value.trim();
+
+        header.style.display = 'block';
+        document.getElementById('export-subtitle').textContent = t.exportSubtitle(nameA().value || t.defaultA, nameB().value || t.defaultB);
+        notesDisp.style.display = notesVal ? 'block' : 'none';
+        if (notesVal) notesDisp.textContent = notesVal;
+
+        area.style.cssText += 'border:0;box-shadow:none;border-radius:0;';
+
+        html2canvas(area, {
+            scale: 2, backgroundColor: '#ffffff', logging: false, useCORS: true, allowTaint: true,
+            onclone: doc => {
+                doc.querySelectorAll('.dot-transition').forEach(d => d.style.transition = 'none');
+                doc.querySelectorAll('div,span,p').forEach(el => {
+                    if (window.getComputedStyle(el).overflow === 'hidden' && el.id !== 'matrix-canvas')
+                        el.style.overflow = 'visible';
+                });
+            }
+        }).then(canvas => {
+            downloadExport(canvas.toDataURL('image/png'));
+        }).catch(err => { console.error(err); alert('Export failed.'); })
+        .finally(() => {
+            header.style.display = 'none';
+            area.style.cssText = area.style.cssText.replace('border:0;box-shadow:none;border-radius:0;', '');
+            btn.disabled = false;
+            btn.innerHTML = `<i class="ph ph-download-simple"></i> <span id="export-btn-label">${t.exportBtn}</span>`;
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedState = readSavedState();
+        if (savedState?.lang === 'en' || savedState?.lang === 'zh') {
+            lang = savedState.lang;
+            document.getElementById('html-root').lang = lang === 'en' ? 'en' : 'zh-HK';
+        }
+        applyI18n();
+        applySavedState(savedState);
+        renderChecklist();
+        document.getElementById('activity-search').addEventListener('input', renderChecklist);
+        document.getElementById('custom-add-form').addEventListener('submit', event => {
+            event.preventDefault();
+            addCustomActivity(document.getElementById('custom-activity-input').value);
+        });
+        document.getElementById('clear-state-btn').addEventListener('click', clearSavedState);
+        nameA().addEventListener('input', () => { updateAxisLabels(); saveState(); });
+        nameB().addEventListener('input', () => { updateAxisLabels(); saveState(); });
+        document.getElementById('exportNotes').addEventListener('input', saveState);
+        updateAxisLabels();
+        updateMatrix();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Comparison | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="Compare before and after images with an overlay slider or side-by-side view. Queue multiple pairs for visual inspection."
+    />
+    <meta property="og:url" content="https://manlung.work/tools/image-comparison" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Image Comparison | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="Compare before and after images with an overlay slider or side-by-side view."
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Image Comparison | Man Lung Yeung" />
+    <meta
+      name="twitter:description"
+      content="Compare before and after images with an overlay slider or side-by-side view."
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/tools/image-comparison/image-comparison-tool.css" />
+  </head>
+  <body>
+    <main class="ic-main">
+      <a class="ic-back" href="/tools/">← Tools</a>
+
+      <header class="ic-header">
+        <div>
+          <h1 class="ic-title">Image Comparison</h1>
+          <p class="ic-lead">
+            Drop before and after images, then inspect them with an overlay slider or side by side. Queue several pairs
+            and rename any of them by double-clicking.
+          </p>
+        </div>
+        <div class="ic-header-actions">
+          <button id="addPairBtn" class="ic-btn ic-btn-primary" type="button">New pair</button>
+          <button id="resetBtn" class="ic-btn ic-btn-secondary" type="button">Reset defaults</button>
+        </div>
+      </header>
+
+      <div class="ic-layout">
+        <aside class="ic-panel" aria-label="Comparison controls">
+          <div>
+            <div class="ic-section-head">
+              <h2 class="ic-section-title">Queue</h2>
+              <span id="queueCount" class="ic-count">0 pairs</span>
+            </div>
+            <div id="queueList" class="ic-queue" role="list"></div>
+            <p class="ic-hint">Double-click a name to rename.</p>
+          </div>
+
+          <div class="ic-field">
+            <span class="ic-section-title">Comparison mode</span>
+            <div class="ic-mode-toggle" role="group" aria-label="Comparison mode">
+              <button id="modeOverlay" class="ic-mode-btn is-active" type="button">Overlay slider</button>
+              <button id="modeSideBySide" class="ic-mode-btn" type="button">Side by side</button>
+            </div>
+          </div>
+
+          <div class="ic-field">
+            <div class="ic-label-row">
+              <span>Image A · before</span>
+              <span id="nameA" class="ic-file-name">Empty</span>
+            </div>
+            <label id="dropZoneA" class="ic-dropzone">
+              <div class="ic-dropzone-empty">
+                <span class="ic-drop-mark" aria-hidden="true">A</span>
+                <p class="ic-drop-copy">
+                  <strong>Drop before image</strong>
+                  or click to browse
+                </p>
+              </div>
+              <div class="ic-dropzone-preview">
+                <img id="previewImgA" src="" alt="" />
+                <span class="ic-dropzone-change">Change image A</span>
+              </div>
+              <input type="file" id="uploadA" accept="image/*" />
+            </label>
+          </div>
+
+          <div class="ic-field">
+            <div class="ic-label-row">
+              <span>Image B · after</span>
+              <span id="nameB" class="ic-file-name">Empty</span>
+            </div>
+            <label id="dropZoneB" class="ic-dropzone">
+              <div class="ic-dropzone-empty">
+                <span class="ic-drop-mark" aria-hidden="true">B</span>
+                <p class="ic-drop-copy">
+                  <strong>Drop after image</strong>
+                  or click to browse
+                </p>
+              </div>
+              <div class="ic-dropzone-preview">
+                <img id="previewImgB" src="" alt="" />
+                <span class="ic-dropzone-change">Change image B</span>
+              </div>
+              <input type="file" id="uploadB" accept="image/*" />
+            </label>
+          </div>
+        </aside>
+
+        <section class="ic-stage-wrap" aria-label="Comparison stage">
+          <div id="overlayContainer" class="ic-overlay">
+            <div id="placeholderBase" class="ic-placeholder">
+              <div class="ic-placeholder-inner">
+                <span class="ic-placeholder-mark">B</span>
+                <p class="ic-placeholder-text">After image</p>
+              </div>
+            </div>
+            <img id="imgBase" class="ic-img is-hidden" src="" alt="Image B" />
+
+            <div id="clipWrapper" class="ic-clip">
+              <div id="placeholderOverlay" class="ic-placeholder">
+                <div class="ic-placeholder-inner">
+                  <span class="ic-placeholder-mark">A</span>
+                  <p class="ic-placeholder-text">Before image</p>
+                </div>
+              </div>
+              <img id="imgOverlay" class="ic-img is-hidden" src="" alt="Image A" />
+            </div>
+
+            <span class="ic-stage-label ic-stage-label-a">Before</span>
+            <span class="ic-stage-label ic-stage-label-b">After</span>
+
+            <div id="sliderHandle" class="ic-handle">
+              <div class="ic-handle-knob" aria-hidden="true">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div id="sideBySideContainer" class="ic-side is-hidden">
+            <div class="ic-side-pane">
+              <div id="sbsPlaceholderA" class="ic-placeholder">
+                <div class="ic-placeholder-inner">
+                  <span class="ic-placeholder-mark">A</span>
+                  <p class="ic-placeholder-text">Before image</p>
+                </div>
+              </div>
+              <img id="sbsImgA" class="is-hidden" src="" alt="Side by side A" />
+              <span class="ic-side-tag">Before</span>
+            </div>
+            <div class="ic-side-pane">
+              <div id="sbsPlaceholderB" class="ic-placeholder">
+                <div class="ic-placeholder-inner">
+                  <span class="ic-placeholder-mark">B</span>
+                  <p class="ic-placeholder-text">After image</p>
+                </div>
+              </div>
+              <img id="sbsImgB" class="is-hidden" src="" alt="Side by side B" />
+              <span class="ic-side-tag">After</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const overlayContainer = document.getElementById("overlayContainer");
+      const clipWrapper = document.getElementById("clipWrapper");
+      const sliderHandle = document.getElementById("sliderHandle");
+      const imgOverlay = document.getElementById("imgOverlay");
+      const imgBase = document.getElementById("imgBase");
+      const sbsImgA = document.getElementById("sbsImgA");
+      const sbsImgB = document.getElementById("sbsImgB");
+      const placeholderBase = document.getElementById("placeholderBase");
+      const placeholderOverlay = document.getElementById("placeholderOverlay");
+      const sbsPlaceholderA = document.getElementById("sbsPlaceholderA");
+      const sbsPlaceholderB = document.getElementById("sbsPlaceholderB");
+
+      const modeOverlayBtn = document.getElementById("modeOverlay");
+      const modeSideBySideBtn = document.getElementById("modeSideBySide");
+      const sideBySideContainer = document.getElementById("sideBySideContainer");
+
+      const dropZoneA = document.getElementById("dropZoneA");
+      const dropZoneB = document.getElementById("dropZoneB");
+      const uploadA = document.getElementById("uploadA");
+      const uploadB = document.getElementById("uploadB");
+      const nameA = document.getElementById("nameA");
+      const nameB = document.getElementById("nameB");
+      const previewImgA = document.getElementById("previewImgA");
+      const previewImgB = document.getElementById("previewImgB");
+
+      const resetBtn = document.getElementById("resetBtn");
+      const addPairBtn = document.getElementById("addPairBtn");
+      const queueList = document.getElementById("queueList");
+      const queueCount = document.getElementById("queueCount");
+
+      let isDragging = false;
+      let editingPairId = null;
+
+      const defaultPairs = () => [
+        {
+          id: "1",
+          title: "Architecture",
+          urlA: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+          nameA: "Cityscape (day)",
+          urlB: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80",
+          nameB: "Cityscape (night)",
+        },
+        {
+          id: "2",
+          title: "Nature & light",
+          urlA: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+          nameA: "Forest fog",
+          urlB: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+          nameB: "Mountain light",
+        },
+      ];
+
+      let imagePairs = defaultPairs();
+      let activePairId = "1";
+
+      function setImageVisible(img, placeholder, url) {
+        const hasUrl = Boolean(url);
+        if (hasUrl) {
+          img.src = url;
+          img.classList.remove("is-hidden");
+          placeholder.classList.add("is-hidden");
+        } else {
+          img.removeAttribute("src");
+          img.classList.add("is-hidden");
+          placeholder.classList.remove("is-hidden");
+        }
+      }
+
+      function updateDropzonePreviews(pair) {
+        if (!pair) return;
+
+        if (pair.urlA) {
+          previewImgA.src = pair.urlA;
+          dropZoneA.classList.add("has-preview");
+        } else {
+          previewImgA.removeAttribute("src");
+          dropZoneA.classList.remove("has-preview");
+        }
+
+        if (pair.urlB) {
+          previewImgB.src = pair.urlB;
+          dropZoneB.classList.add("has-preview");
+        } else {
+          previewImgB.removeAttribute("src");
+          dropZoneB.classList.remove("has-preview");
+        }
+      }
+
+      function updateImageSizes() {
+        const rect = overlayContainer.getBoundingClientRect();
+        const width = `${rect.width}px`;
+        const height = `${rect.height}px`;
+        [imgOverlay, imgBase, placeholderOverlay, placeholderBase].forEach((el) => {
+          el.style.width = width;
+          el.style.height = height;
+        });
+      }
+
+      function renderQueue() {
+        queueList.innerHTML = "";
+        queueCount.textContent = `${imagePairs.length} pair${imagePairs.length === 1 ? "" : "s"}`;
+
+        imagePairs.forEach((pair, index) => {
+          const isActive = pair.id === activePairId;
+          const item = document.createElement("div");
+          item.className = `ic-queue-item${isActive ? " is-active" : ""}`;
+          item.setAttribute("role", "listitem");
+          item.dataset.pairId = pair.id;
+
+          const title = document.createElement("span");
+          title.className = "ic-queue-title";
+          title.textContent = pair.title || `Pair ${index + 1}`;
+          title.title = "Double-click to rename";
+          item.appendChild(title);
+
+          if (imagePairs.length > 1) {
+            const deleteBtn = document.createElement("button");
+            deleteBtn.type = "button";
+            deleteBtn.className = "ic-queue-delete";
+            deleteBtn.setAttribute("aria-label", `Delete ${pair.title || "pair"}`);
+            deleteBtn.innerHTML =
+              '<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>';
+            deleteBtn.addEventListener("click", (event) => {
+              event.stopPropagation();
+              deletePair(pair.id);
+            });
+            item.appendChild(deleteBtn);
+          }
+
+          item.addEventListener("click", (event) => {
+            if (event.target.closest(".ic-queue-delete") || event.target.closest(".ic-queue-title-input")) return;
+            if (editingPairId === pair.id) return;
+            selectPair(pair.id);
+          });
+
+          queueList.appendChild(item);
+        });
+      }
+
+      queueList.addEventListener("dblclick", (event) => {
+        const title = event.target.closest(".ic-queue-title");
+        if (!title || !queueList.contains(title)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const item = title.closest(".ic-queue-item");
+        const pairId = item?.dataset.pairId;
+        if (pairId) startRename(pairId, title);
+      });
+
+      function applyPairToStage(pair) {
+        setImageVisible(imgOverlay, placeholderOverlay, pair.urlA);
+        setImageVisible(sbsImgA, sbsPlaceholderA, pair.urlA);
+        setImageVisible(imgBase, placeholderBase, pair.urlB);
+        setImageVisible(sbsImgB, sbsPlaceholderB, pair.urlB);
+
+        nameA.textContent = pair.nameA || "Empty";
+        nameB.textContent = pair.nameB || "Empty";
+
+        updateDropzonePreviews(pair);
+        updateImageSizes();
+      }
+
+      function markActiveQueueItem(id) {
+        queueList.querySelectorAll(".ic-queue-item").forEach((el) => {
+          el.classList.toggle("is-active", el.dataset.pairId === id);
+        });
+      }
+
+      function startRename(pairId, titleEl) {
+        const pair = imagePairs.find((item) => item.id === pairId);
+        if (!pair || editingPairId === pairId) return;
+        if (!(titleEl instanceof HTMLElement) || !titleEl.isConnected) return;
+
+        editingPairId = pairId;
+        activePairId = pairId;
+        applyPairToStage(pair);
+        markActiveQueueItem(pairId);
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "ic-queue-title-input";
+        input.value = pair.title || "";
+        input.setAttribute("aria-label", "Pair name");
+
+        let finished = false;
+        const finish = (commit) => {
+          if (finished || editingPairId !== pairId) return;
+          finished = true;
+          if (commit) {
+            const next = input.value.trim();
+            pair.title = next || `Pair ${imagePairs.findIndex((item) => item.id === pairId) + 1}`;
+          }
+          editingPairId = null;
+          renderQueue();
+        };
+
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            finish(true);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            finish(false);
+          }
+        });
+        input.addEventListener("blur", () => finish(true));
+        input.addEventListener("mousedown", (event) => event.stopPropagation());
+        input.addEventListener("click", (event) => event.stopPropagation());
+
+        titleEl.replaceWith(input);
+        requestAnimationFrame(() => {
+          input.focus();
+          input.select();
+        });
+      }
+
+      function selectPair(id) {
+        const pair = imagePairs.find((item) => item.id === id);
+        if (!pair) return;
+
+        activePairId = id;
+        applyPairToStage(pair);
+        markActiveQueueItem(id);
+      }
+
+      function deletePair(id) {
+        imagePairs = imagePairs.filter((pair) => pair.id !== id);
+        if (activePairId === id) {
+          activePairId = imagePairs[0]?.id || null;
+        }
+        renderQueue();
+        if (activePairId) {
+          selectPair(activePairId);
+        }
+      }
+
+      function handleFileSelection(file, isSideA) {
+        if (!file?.type.startsWith("image/")) return;
+
+        const url = URL.createObjectURL(file);
+        const activePair = imagePairs.find((pair) => pair.id === activePairId);
+        if (!activePair) return;
+
+        if (isSideA) {
+          activePair.urlA = url;
+          activePair.nameA = file.name;
+        } else {
+          activePair.urlB = url;
+          activePair.nameB = file.name;
+        }
+
+        selectPair(activePairId);
+      }
+
+      function setupDragAndDrop(element, isSideA) {
+        ["dragenter", "dragover"].forEach((eventName) => {
+          element.addEventListener(eventName, (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            element.classList.add("is-dragover");
+          });
+        });
+
+        ["dragleave", "drop"].forEach((eventName) => {
+          element.addEventListener(eventName, (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            element.classList.remove("is-dragover");
+          });
+        });
+
+        element.addEventListener("drop", (event) => {
+          const file = event.dataTransfer?.files?.[0];
+          if (file) handleFileSelection(file, isSideA);
+        });
+      }
+
+      function setSliderPosition(clientX) {
+        const rect = overlayContainer.getBoundingClientRect();
+        let x = clientX - rect.left;
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        const percentage = (x / rect.width) * 100;
+        clipWrapper.style.width = `${percentage}%`;
+        sliderHandle.style.left = `${percentage}%`;
+      }
+
+      setupDragAndDrop(dropZoneA, true);
+      setupDragAndDrop(dropZoneB, false);
+
+      uploadA.addEventListener("change", (event) => {
+        if (event.target.files[0]) handleFileSelection(event.target.files[0], true);
+      });
+
+      uploadB.addEventListener("change", (event) => {
+        if (event.target.files[0]) handleFileSelection(event.target.files[0], false);
+      });
+
+      addPairBtn.addEventListener("click", () => {
+        const newId = Date.now().toString();
+        imagePairs.push({
+          id: newId,
+          title: `Pair ${imagePairs.length + 1}`,
+          urlA: "",
+          nameA: "",
+          urlB: "",
+          nameB: "",
+        });
+        renderQueue();
+        selectPair(newId);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        imagePairs = defaultPairs();
+        activePairId = "1";
+        clipWrapper.style.width = "50%";
+        sliderHandle.style.left = "50%";
+        renderQueue();
+        selectPair("1");
+      });
+
+      modeOverlayBtn.addEventListener("click", () => {
+        modeOverlayBtn.classList.add("is-active");
+        modeSideBySideBtn.classList.remove("is-active");
+        overlayContainer.classList.remove("is-hidden");
+        sideBySideContainer.classList.add("is-hidden");
+        updateImageSizes();
+      });
+
+      modeSideBySideBtn.addEventListener("click", () => {
+        modeSideBySideBtn.classList.add("is-active");
+        modeOverlayBtn.classList.remove("is-active");
+        sideBySideContainer.classList.remove("is-hidden");
+        overlayContainer.classList.add("is-hidden");
+      });
+
+      overlayContainer.addEventListener("pointerdown", (event) => {
+        isDragging = true;
+        setSliderPosition(event.clientX);
+        overlayContainer.setPointerCapture(event.pointerId);
+      });
+
+      overlayContainer.addEventListener("pointermove", (event) => {
+        if (!isDragging) return;
+        setSliderPosition(event.clientX);
+      });
+
+      overlayContainer.addEventListener("pointerup", (event) => {
+        isDragging = false;
+        try {
+          overlayContainer.releasePointerCapture(event.pointerId);
+        } catch (_) {}
+      });
+
+      window.addEventListener("resize", updateImageSizes);
+      renderQueue();
+      selectPair(activePairId);
+      window.addEventListener("load", updateImageSizes);
+    </script>
+  </body>
+</html>

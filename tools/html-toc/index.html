@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 目錄 (TOC) 自動產生器 | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="貼上 HTML，自動產生巢狀目錄、標題錨點與內聯樣式，方便用於 LMS、電子郵件與靜態頁面。"
+    />
+    <meta property="og:url" content="https://manlung.work/tools/html-toc" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HTML 目錄 (TOC) 自動產生器 | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="貼上 HTML，自動產生巢狀目錄、標題錨點與內聯樣式，方便用於 LMS、電子郵件與靜態頁面。"
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HTML 目錄 (TOC) 自動產生器" />
+    <meta
+      name="twitter:description"
+      content="貼上 HTML，自動產生巢狀目錄、標題錨點與內聯樣式。"
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/tools/html-toc/html-toc-tool.css" />
+  </head>
+  <body>
+    <main class="toc-main">
+      <a class="toc-back" href="/tools/">← Tools</a>
+
+      <header class="toc-header">
+        <div class="toc-header-row">
+          <div>
+            <h1 class="toc-title">HTML 目錄 (TOC) 自動產生器</h1>
+            <p class="toc-lead">
+              貼上原始 HTML，自動為標題加上錨點並插入巢狀目錄。可輸出含內聯樣式的結果，方便貼進 LMS 或郵件。
+            </p>
+          </div>
+          <button id="loadExampleBtn" class="toc-btn toc-btn-secondary" type="button">載入 Teams 指南範例</button>
+        </div>
+      </header>
+
+      <div class="toc-layout">
+        <section class="toc-col" aria-label="輸入與設定">
+          <div class="toc-card">
+            <h2 class="toc-card-title">設定選項</h2>
+
+            <div class="toc-options">
+              <div class="toc-field">
+                <span class="toc-label">包含標題層級：</span>
+                <div class="toc-level-list">
+                  <label class="toc-check">
+                    <input type="checkbox" value="h1" class="toc-level" checked />
+                    H1
+                  </label>
+                  <label class="toc-check">
+                    <input type="checkbox" value="h2" class="toc-level" checked />
+                    H2
+                  </label>
+                  <label class="toc-check">
+                    <input type="checkbox" value="h3" class="toc-level" checked />
+                    H3
+                  </label>
+                  <label class="toc-check">
+                    <input type="checkbox" value="h4" class="toc-level" />
+                    H4
+                  </label>
+                </div>
+              </div>
+
+              <div class="toc-field">
+                <label class="toc-label" for="tocTitleInput">目錄標題名稱：</label>
+                <input
+                  type="text"
+                  id="tocTitleInput"
+                  class="toc-input"
+                  value="Table of Contents"
+                />
+              </div>
+
+              <div class="toc-field">
+                <label class="toc-label" for="tocPositionSelect">目錄插入位置：</label>
+                <select id="tocPositionSelect" class="toc-input">
+                  <option value="top">文章最頂端 (Top)</option>
+                  <option value="before-first">第一個標題之前 (Before 1st Heading)</option>
+                </select>
+              </div>
+
+              <div class="toc-field toc-field-inline">
+                <label class="toc-check">
+                  <input type="checkbox" id="useInlineStyleCheckbox" checked />
+                  <span>套用 Inline 內聯樣式（無需 &lt;style&gt; 標籤）</span>
+                </label>
+              </div>
+
+              <div class="toc-field toc-field-inline">
+                <label class="toc-check">
+                  <input type="checkbox" id="collapsibleTocCheckbox" />
+                  <span>可折疊目錄（使用 &lt;details&gt; / &lt;summary&gt;；部分 LMS 不支援）</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="toc-card toc-card-grow">
+            <div class="toc-card-toolbar">
+              <label class="toc-card-title" for="htmlInput">輸入原始 HTML 內容：</label>
+              <button id="clearBtn" class="toc-btn-text" type="button">清除</button>
+            </div>
+            <textarea
+              id="htmlInput"
+              class="toc-textarea"
+              placeholder="請在此貼上你的 HTML 程式碼…"
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </section>
+
+        <section class="toc-col" aria-label="預覽與輸出">
+          <div class="toc-card toc-card-grow">
+            <div class="toc-tabs-row">
+              <div class="toc-tabs" role="tablist">
+                <button
+                  id="tabPreviewBtn"
+                  class="toc-tab is-active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                >
+                  即時預覽
+                </button>
+                <button
+                  id="tabCodeBtn"
+                  class="toc-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  HTML 程式碼
+                </button>
+              </div>
+              <div class="toc-actions">
+                <button id="copyBtn" class="toc-btn toc-btn-primary" type="button">複製 HTML</button>
+                <button id="downloadBtn" class="toc-btn toc-btn-secondary" type="button">下載 .html</button>
+              </div>
+            </div>
+
+            <div id="previewContainer" class="toc-preview">
+              <p class="toc-empty">請在左側輸入 HTML 或點擊「載入 Teams 指南範例」開始。</p>
+            </div>
+
+            <div id="codeContainer" class="toc-code is-hidden">
+              <textarea id="htmlOutput" class="toc-output" readonly spellcheck="false"></textarea>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div
+      id="toast"
+      class="toc-toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <span id="toastMsg">成功複製到剪貼簿！</span>
+    </div>
+
+    <script src="/tools/html-toc/html-toc-tool.js" defer></script>
+  </body>
+</html>

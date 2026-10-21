@@ -1,0 +1,290 @@
+:root {
+  --ink: #1a1a1a;
+  --soft-ink: #555;
+  --muted: #767676;
+  --accent: #4b2e83;
+  --line: #e8e8e8;
+  --paper: #f5f4f1;
+  --font-heading: "Instrument Serif", serif;
+  --grain-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  background-image: var(--grain-svg);
+  background-size: 180px 180px;
+}
+
+.kin-main {
+  position: relative;
+  z-index: 0;
+  width: min(42rem, 92vw);
+  margin: 0 auto;
+  padding: 3rem 0 3.5rem;
+}
+
+.kin-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.kin-back:hover,
+.kin-back:focus-visible {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.kin-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 2.6vw, 2rem);
+  font-weight: 400;
+}
+
+.kin-lead {
+  margin: 0 0 1.25rem;
+  color: var(--soft-ink);
+  line-height: 1.7;
+}
+
+.kin-lead em {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.kin-calc {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.56);
+  padding: 1rem;
+}
+
+.kin-display {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.85rem 0.95rem;
+  min-height: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+.kin-chain {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  word-break: break-all;
+}
+
+.kin-chain .kin-chain-eq {
+  margin: 0 0.35rem;
+  color: var(--muted);
+}
+
+.kin-result {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.kin-result.is-muted {
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.kin-error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8a2e2e;
+  display: none;
+}
+
+.kin-error.is-visible {
+  display: block;
+}
+
+.kin-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.25rem;
+  margin: 0.9rem 0 0.8rem;
+}
+
+.kin-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kin-toggle-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.kin-toggle-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--soft-ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.32rem 0.7rem;
+  cursor: pointer;
+  border-radius: 999px;
+  transition:
+    background 140ms ease,
+    color 140ms ease,
+    border-color 140ms ease;
+}
+
+.kin-toggle-btn + .kin-toggle-btn {
+  margin-left: -0.15rem;
+}
+
+.kin-toggle-btn:hover,
+.kin-toggle-btn:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.kin-toggle-btn.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.kin-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.kin-key {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1.05rem;
+  padding: 0.7rem 0.4rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition:
+    background 140ms ease,
+    color 140ms ease,
+    border-color 140ms ease;
+}
+
+.kin-key:hover,
+.kin-key:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.kin-key:active {
+  background: color-mix(in srgb, var(--accent) 8%, #fff);
+}
+
+.kin-key-util {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.kin-help {
+  margin-top: 1.25rem;
+  color: var(--soft-ink);
+  line-height: 1.7;
+}
+
+.kin-help h2 {
+  margin: 1.65rem 0 0.55rem;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.kin-help p {
+  margin: 0 0 0.8rem;
+}
+
+.kin-help ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.kin-help li {
+  margin: 0 0 0.45rem;
+}
+
+.kin-help em {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.kin-help code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.3em;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+.kin-help strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.kin-help-en {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.kin-help-en p,
+.kin-help-en li {
+  font-size: 0.96rem;
+}
+
+@media (max-width: 28rem) {
+  .kin-key {
+    font-size: 1rem;
+    padding: 0.6rem 0.3rem;
+  }
+}

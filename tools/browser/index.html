@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What Is My Browser? | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="Check your browser, engine, operating system, screen, and device details from the current client."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://manlung.work/tools/browser" />
+    <meta property="og:title" content="What Is My Browser? | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="Inspect browser, system, screen, network, and device details directly in your browser."
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="What Is My Browser? | Man Lung Yeung" />
+    <meta
+      name="twitter:description"
+      content="Inspect browser, system, screen, network, and device details directly in your browser."
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/tools/browser/browser-tool.css" />
+  </head>
+  <body>
+    <main class="browser-main">
+      <a class="browser-back" href="/tools/">← Tools</a>
+
+      <h1 class="browser-title">What Is My Browser?</h1>
+      <p class="browser-lead">Live browser and device diagnostics from this tab.</p>
+
+      <section class="browser-hero" aria-label="Detected browser">
+        <p class="browser-subtitle">Your web browser looks like</p>
+        <p class="browser-name" id="browser-name">Loading…</p>
+        <p class="browser-user-agent" id="browser-user-agent">Detecting user agent…</p>
+      </section>
+
+      <section class="browser-grid" aria-label="Browser diagnostics">
+        <article class="browser-card">
+          <h2 class="browser-card-title">Browser Information</h2>
+          <table class="browser-table" id="browser-details"></table>
+        </article>
+
+        <article class="browser-card">
+          <h2 class="browser-card-title">User Information</h2>
+          <table class="browser-table" id="user-details"></table>
+        </article>
+
+        <article class="browser-card">
+          <h2 class="browser-card-title">System Information</h2>
+          <table class="browser-table" id="system-details"></table>
+        </article>
+
+        <article class="browser-card">
+          <h2 class="browser-card-title">Screen Information</h2>
+          <table class="browser-table" id="screen-details"></table>
+        </article>
+
+        <article class="browser-card">
+          <h2 class="browser-card-title">Device Information</h2>
+          <table class="browser-table" id="device-details"></table>
+        </article>
+      </section>
+
+      <section class="browser-help">
+        <h2>What This Is For</h2>
+        <p>
+          Share this page with support teams when something behaves differently across browsers. It helps confirm your
+          browser version, rendering engine, operating system, and client capabilities.
+        </p>
+      </section>
+      <p class="browser-attribution">
+        Browser detection powered by
+        <a class="browser-link" href="https://github.com/mumuy/browser" target="_blank" rel="noopener noreferrer"
+          >mumuy/browser</a
+        >.
+      </p>
+    </main>
+
+    <script src="/tools/browser/browseris.js" defer></script>
+    <script src="/tools/browser/browser-tool.js" defer></script>
+  </body>
+</html>

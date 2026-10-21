@@ -1,0 +1,392 @@
+/* Standalone prose pages (bio, music) — tokens match index.html */
+
+:root {
+  --ink: #1a1a1a;
+  --soft-ink: #555;
+  --muted: #767676;
+  --accent: #4b2e83;
+  --line: #e8e8e8;
+  --paper: #f5f4f1;
+  --font-heading: "Instrument Serif", serif;
+  --grain-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  background-image: var(--grain-svg);
+  background-size: 180px 180px;
+}
+
+.prose-page-main {
+  position: relative;
+  z-index: 0;
+  width: min(42rem, 92vw);
+  margin: 0 auto;
+  padding: 5.5rem 0 3.5rem;
+}
+
+/* Bio: narrow measure like leerob prose (~650px); galleries break out below. */
+.prose-page-main.prose-page-main--wide {
+  width: min(650px, 92vw);
+}
+
+/* Photos wider than prose column — relative block + centered viewport band (Tailwind analogue). */
+.prose-breakout-gallery {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: clamp(1.75rem, 5vw, 2.5rem) 0 clamp(2rem, 6vw, 4rem);
+  box-sizing: border-box;
+}
+
+.prose-breakout-gallery > .prose-pair-grid {
+  margin-block: 0;
+}
+
+@media (min-width: 48rem) {
+  .prose-breakout-gallery {
+    width: min(100vw - 24px, 1100px);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: clamp(2rem, 6vw, 4rem);
+    margin-bottom: clamp(2rem, 6vw, 4rem);
+  }
+}
+
+.prose-page-back {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.prose-page-back:hover,
+.prose-page-back:focus-visible {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.prose-page-main h1 {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.012em;
+}
+
+.prose-page-main h2 {
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prose-page-main p {
+  margin: 0 0 1.25rem;
+  color: var(--soft-ink);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.prose-page-main p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-page-main ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+  color: var(--soft-ink);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.prose-page-main li {
+  margin: 0 0 0.55rem;
+}
+
+.prose-page-main li:last-child {
+  margin-bottom: 0;
+}
+
+.prose-page-main .prose-lead {
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+a.prose-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--soft-ink) 55%, transparent);
+  transition:
+    color 140ms ease,
+    text-decoration-color 140ms ease;
+}
+
+a.prose-link:hover,
+a.prose-link:focus-visible {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.prose-page-footnote {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.prose-page-footnote p {
+  margin: 0 0 0.65rem;
+  font-size: inherit;
+  color: inherit;
+}
+
+.prose-page-footnote p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-profile {
+  width: min(220px, 72vw);
+  margin: 0 auto 1.75rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.prose-profile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+figure.prose-profile.prose-profile-wide {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 1.75rem;
+}
+
+/* Two-up photo row (bio / long-form prose), à la leerob.com/bio */
+.prose-pair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 2vw, 16px);
+  width: 100%;
+  margin: 0 0 1.75rem;
+}
+
+@media (max-width: 38rem) {
+  .prose-pair-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose-pair-grid .prose-pair-cell {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.prose-pair-grid .prose-pair-cell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.prose-pull {
+  margin: 1.65rem 0;
+  padding: 0 0 0 1rem;
+  border-left: 3px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  font-family: var(--font-heading);
+  font-size: 1.06rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.music-page-sub {
+  display: block;
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.music-page-sub:hover,
+.music-page-sub:focus-visible {
+  color: var(--accent);
+}
+
+.music-page-note {
+  margin: 0 0 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.music-page-updated {
+  margin: 0 0 1.75rem;
+  margin-top: 0.5rem;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 0.88rem;
+  color: var(--soft-ink);
+  line-height: 1.55;
+}
+
+.music-page-updated-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.music-page-updated time {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.music-section-title {
+  margin: 2.5rem 0 0.85rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.music-section-title:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.music-rank-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.music-rank-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+  color: var(--soft-ink);
+  line-height: 1.45;
+}
+
+.music-rank-list li:last-child {
+  margin-bottom: 0;
+}
+
+.music-rank-num {
+  flex: 0 0 1.25rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.music-artist-img,
+.music-album-img {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.music-artist-img {
+  border-radius: 50%;
+}
+
+.music-album-img {
+  border-radius: 6px;
+}
+
+.music-img-placeholder {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  background: color-mix(in srgb, var(--line) 85%, var(--muted));
+}
+
+.music-img-placeholder--round {
+  border-radius: 50%;
+}
+
+.music-img-placeholder--square {
+  border-radius: 6px;
+}
+
+.music-rank-body {
+  flex: 1;
+  min-width: 0;
+  align-self: center;
+}
+
+.music-rank-body a {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2.5px;
+  text-decoration-color: color-mix(in srgb, var(--soft-ink) 50%, transparent);
+}
+
+.music-rank-body a:hover,
+.music-rank-body a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.music-track-meta {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+

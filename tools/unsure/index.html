@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsure Calculator | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="Compute formulas with uncertain inputs using range notation like 10~15 and Monte Carlo simulation."
+    />
+    <meta property="og:url" content="https://manlung.work/tools/unsure" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Unsure Calculator | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="Compute formulas with uncertain inputs using range notation like 10~15 and Monte Carlo simulation."
+    />
+    <meta property="og:image" content="https://manlung.work/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Unsure Calculator | Man Lung Yeung" />
+    <meta
+      name="twitter:description"
+      content="Compute formulas with uncertain inputs using range notation like 10~15 and Monte Carlo simulation."
+    />
+    <meta name="twitter:image" content="https://manlung.work/og-twitter.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/tools/unsure/unsure-tool.css" />
+  </head>
+  <body>
+    <main class="unsure-main">
+      <a class="unsure-back" href="/tools/">← Tools</a>
+      <h1 class="unsure-title">Unsure Calculator</h1>
+      <p class="unsure-lead">
+        Calculate with numbers you are not fully sure about. Use <code>a~b</code> to describe a 95% confidence range, then
+        combine with normal math operators.
+      </p>
+
+      <section class="unsure-calc" aria-label="Uncertainty calculator">
+        <input
+          id="unsure-formula"
+          class="unsure-input"
+          type="text"
+          inputmode="text"
+          spellcheck="false"
+          aria-label="Formula to compute"
+        />
+
+        <div class="unsure-grid">
+          <div id="unsure-keypad" class="unsure-keypad" aria-label="Keypad">
+            <div class="unsure-keypad-grid">
+              <button class="unsure-key" data-value="7" type="button">7</button>
+              <button class="unsure-key" data-value="8" type="button">8</button>
+              <button class="unsure-key" data-value="9" type="button">9</button>
+              <button class="unsure-key unsure-key-op" data-value="/" type="button">/</button>
+              <button class="unsure-key unsure-key-op" data-action="backspace" type="button">⌫</button>
+
+              <button class="unsure-key" data-value="4" type="button">4</button>
+              <button class="unsure-key" data-value="5" type="button">5</button>
+              <button class="unsure-key" data-value="6" type="button">6</button>
+              <button class="unsure-key unsure-key-op" data-value="*" type="button">x</button>
+              <button class="unsure-key unsure-key-op" data-value="~" type="button">~</button>
+
+              <button class="unsure-key" data-value="1" type="button">1</button>
+              <button class="unsure-key" data-value="2" type="button">2</button>
+              <button class="unsure-key" data-value="3" type="button">3</button>
+              <button class="unsure-key unsure-key-op" data-value="-" type="button">-</button>
+              <button class="unsure-key unsure-key-op" data-value="(" type="button">(</button>
+
+              <button class="unsure-key" data-value="0" type="button">0</button>
+              <button class="unsure-key" data-value="." type="button">.</button>
+              <button class="unsure-key unsure-key-op" data-value=")" type="button">)</button>
+              <button class="unsure-key unsure-key-op" data-value="+" type="button">+</button>
+              <button class="unsure-key unsure-key-op" data-action="compute" type="button">=</button>
+            </div>
+          </div>
+
+          <div class="unsure-output">
+            <p class="unsure-result" id="unsure-result">—</p>
+            <p class="unsure-error" id="unsure-error"></p>
+
+            <p class="unsure-section-title">Histogram</p>
+            <pre class="unsure-pre" id="unsure-histogram"></pre>
+
+            <p class="unsure-section-title">Percentiles</p>
+            <pre class="unsure-pre" id="unsure-percentiles"></pre>
+          </div>
+        </div>
+      </section>
+
+      <div class="unsure-help">
+        <h2>Calculate With Numbers You Are Not Sure About</h2>
+        <p>
+          A normal calculator asks you to pretend every input is exact. This one lets you keep the uncertainty in the
+          formula. When you write <code>10~15</code>, read it as “ten to fifteen”: a range you are roughly 95% confident
+          contains the real value.
+        </p>
+        <p>
+          The result is also a range. For example, the default budget-style formula estimates a likely low and high
+          outcome instead of a single fragile number. The histogram shows where outcomes tend to cluster, and the
+          percentiles show how much risk sits in the tails.
+        </p>
+
+        <h2>Notation</h2>
+        <p>Examples: <code>10~15</code>, <code>(1000~1500) * (30~50 / 100)</code>, <code>(200~250) - (40~60)</code>.</p>
+        <ul>
+          <li><code>~</code> means an uncertain range, modeled as a normal distribution.</li>
+        </ul>
+
+        <h2>Limitations</h2>
+        <p>
+          Notes: ranges are interpreted as normal distributions where the low/high values are two standard deviations from
+          the mean (roughly 95% interval). This is for back-of-the-napkin reasoning, not strict statistical modeling.
+        </p>
+      </div>
+    </main>
+
+    <script src="/tools/unsure/unsure-tool.js" defer></script>
+  </body>
+</html>

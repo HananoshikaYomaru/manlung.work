@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowledge Management &amp; Obsidian | Man Lung Yeung</title>
+    <meta
+      name="description"
+      content="Early work in personal knowledge management and the Obsidian ecosystem — open-source plugins, a public wiki at yomaru.dev, and how that practice evolved as AI changed what “knowing” means."
+    />
+    <meta property="og:url" content="https://manlung.work/case-studies/knowledge-management-obsidian.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Knowledge Management &amp; Obsidian | Man Lung Yeung" />
+    <meta
+      property="og:description"
+      content="Pioneering PKM and Obsidian plugins, a high-traffic public wiki, and ongoing reflection on learning as knowledge becomes abundant."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn1.sharemyimage.com/smi/2026/05/13/277412388-c8a501e8-c5b6-4622-b5df-2a2335609cae-1.jpeg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Knowledge Management &amp; Obsidian | Man Lung Yeung" />
+    <meta
+      name="twitter:description"
+      content="Pioneering PKM and Obsidian plugins, a high-traffic public wiki, and ongoing reflection on learning as knowledge becomes abundant."
+    />
+    <meta
+      name="twitter:image"
+      content="https://cdn1.sharemyimage.com/smi/2026/05/13/277412388-c8a501e8-c5b6-4622-b5df-2a2335609cae-1.jpeg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="case-study.css" />
+  </head>
+  <body class="case-vt-knowledge-management-obsidian">
+    <main class="case-study-main">
+      <div class="case-study-container">
+        <a class="case-study-back" href="../index.html#work">
+          <span class="case-study-back-arrow" aria-hidden="true">←</span>
+          Case Studies
+        </a>
+
+        <header class="case-study-hero">
+          <div class="case-study-hero-media">
+            <img
+              src="https://cdn1.sharemyimage.com/smi/2026/05/13/277412388-c8a501e8-c5b6-4622-b5df-2a2335609cae-1.jpeg"
+              alt=""
+              width="1200"
+              height="630"
+              decoding="async"
+            />
+          </div>
+          <div class="case-study-hero-text">
+            <h1 class="case-study-title">Knowledge Management &amp; Obsidian</h1>
+            <p class="case-study-tagline">
+              To make durable thinking easier — in public, in plugins, and in writing — long before today’s AI + notes
+              stack became conventional.
+            </p>
+          </div>
+        </header>
+
+        <div class="case-study-meta-strip">
+          <div class="case-meta-item">
+            <svg
+              class="case-meta-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <div>
+              <p class="case-meta-label">Role</p>
+              <p class="case-meta-value">PKM, open source, and public knowledge systems</p>
+            </div>
+          </div>
+          <div class="case-meta-item">
+            <svg
+              class="case-meta-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+            <div>
+              <p class="case-meta-label">Timeline</p>
+              <p class="case-meta-value">Multi-year (Obsidian ecosystem &amp; yomaru.dev)</p>
+            </div>
+          </div>
+          <div class="case-meta-item">
+            <svg
+              class="case-meta-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M16 7h6v6"></path>
+              <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+            </svg>
+            <div>
+              <p class="case-meta-label">Impact</p>
+              <p class="case-meta-value">Plugins, community use, and a wiki with tens of thousands of monthly views</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study-columns">
+          <section class="case-study-section" aria-labelledby="cs-km-goal">
+            <h2 id="cs-km-goal">Goal</h2>
+            <p>
+              Help people think in linked notes instead of scattered files: a local-first vault that stays fast,
+              composable, and honest about incompleteness. I wanted the Obsidian experience to feel less like “yet
+              another app” and more like a calm surface for serious work — including graph navigation, safer saves,
+              frontmatter automation, and publishing ergonomics.
+            </p>
+          </section>
+          <section class="case-study-section" aria-labelledby="cs-km-problem">
+            <h2 id="cs-km-problem">Problem</h2>
+            <p>
+              Early Obsidian rewarded curiosity, but the edges were rough: plugins conflicted, metadata drifted, large
+              vaults strained the UI, and publishing was awkward. Before “Claude + Obsidian” was a common pairing,
+              there was little shared infrastructure for the workflows power users were inventing every week. The gap
+              was not information — it was <em>structure</em>: repeatable patterns and small tools that made good habits
+              the default.
+            </p>
+          </section>
+          <section class="case-study-section" aria-labelledby="cs-km-solution">
+            <h2 id="cs-km-solution">Solution</h2>
+            <p>
+              I shipped a set of focused open-source plugins (see below) and maintained
+              <a href="https://yomaru.dev/" target="_blank" rel="noopener noreferrer">yomaru.dev</a>, a public knowledge
+              wiki that turned into a steady traffic surface — tens of thousands of views each month — where ideas could
+              be indexed, linked, and improved in the open. The work sat at the intersection of developer ergonomics and
+              learning design: small affordances that compound when thousands of vaults adopt them.
+            </p>
+          </section>
+          <section class="case-study-section" aria-labelledby="cs-km-achievement">
+            <h2 id="cs-km-achievement">Achievement</h2>
+            <ul class="case-study-outcomes">
+              <li>
+                <strong>Early mover in PKM + Obsidian</strong> — building and maintaining plugins and patterns well
+                before AI-in-notes workflows went mainstream.
+              </li>
+              <li>
+                <strong>Eight public repositories</strong> spanning graph UX, save hooks, incomplete-file workflows,
+                publish URLs, frontmatter and tag generators, image captions, and a better plugin settings page (with
+                <a href="https://github.com/TopTierTools" target="_blank" rel="noopener noreferrer">TopTierTools</a>).
+              </li>
+              <li>
+                <strong><a href="https://yomaru.dev/" target="_blank" rel="noopener noreferrer">yomaru.dev</a> wiki</strong>
+                — sustained readership (tens of thousands of views per month) as a living reference for the community.
+              </li>
+              <li>
+                <strong>Ongoing stance</strong> — as AI makes raw knowledge cheap and accessible, knowledge management
+                itself evolves. I have stepped back from day-to-day Obsidian ecosystem maintenance, but I keep
+                re-evaluating what actually matters for learning: judgment, taste, synthesis, and the discipline to
+                close loops — not merely collecting answers.
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="case-study-section case-study-section--repos" aria-labelledby="cs-km-plugins">
+          <h2 id="cs-km-plugins">Open source (GitHub)</h2>
+          <p class="case-study-repo-stars-sum" aria-label="Combined GitHub stars for listed repositories">
+            <!-- GITHUB-OBSIDIAN-STARS-START --><span class="case-study-repo-stats-item" title="Combined stars">★ 310 stars</span><span class="case-study-repo-stats-sep" aria-hidden="true">·</span><span class="case-study-repo-stats-item" title="Combined forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 17 forks</span><span class="case-study-repo-stats-sep" aria-hidden="true">·</span><span class="case-study-repo-stats-item">8 repos</span><!-- GITHUB-OBSIDIAN-STARS-END -->
+          </p>
+          <div class="case-study-repo-grid">
+            <!-- GITHUB-OBSIDIAN-CARDS-START -->
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-3d-graph" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-3d-graph</span>
+              <span class="case-study-repo-card-desc">👓 A 3D graph for Obsidian!</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 168</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 7</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/Obsidian-Frontmatter-Generator" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/Obsidian-Frontmatter-Generator</span>
+              <span class="case-study-repo-card-desc">A plugin for Obsidian that generates frontmatter for notes</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 46</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 3</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/TopTierTools/obsidian-better-plugin-page" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/152261590?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">TopTierTools/obsidian-better-plugin-page</span>
+              <span class="case-study-repo-card-desc">Better Plugins Page for Obsidian, add filtering and hiding to the page</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 43</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 0</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-custom-save" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-custom-save</span>
+              <span class="case-study-repo-card-desc">add custom save action to your save command</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 16</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 2</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-tag-generator" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-tag-generator</span>
+              <span class="case-study-repo-card-desc">Break down nested tags into multiple parent tags</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 13</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 2</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-image-caption" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-image-caption</span>
+              <span class="case-study-repo-card-desc">Generate image caption easily. Completely markdown-based.</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 10</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 0</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-incomplete-files" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-incomplete-files</span>
+              <span class="case-study-repo-card-desc">Rule based incomplete files discovery</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 9</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 2</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+          <a class="case-study-repo-card" href="https://github.com/HananoshikaYomaru/obsidian-publish-url" target="_blank" rel="noopener noreferrer">
+            <img class="case-study-repo-card-avatar" src="https://avatars.githubusercontent.com/u/43137033?v=4" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div class="case-study-repo-card-body">
+              <span class="case-study-repo-card-name">HananoshikaYomaru/obsidian-publish-url</span>
+              <span class="case-study-repo-card-desc">copy the publish url to clipboard</span>
+              <span class="case-study-repo-card-meta"><span class="case-study-repo-card-stat" title="Stars">★ 5</span><span class="case-study-repo-card-stat" title="Forks"><svg class="case-study-repo-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" /><path d="M12 12l0 4" /></svg> 1</span><span class="case-study-repo-card-stat">TypeScript</span></span>
+            </div>
+          </a>
+            <!-- GITHUB-OBSIDIAN-CARDS-END -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="case-study-site-footer">
+      <div class="case-study-site-footer-inner">
+        <p>© <span id="case-study-year"></span> Ken Man Lung Yeung</p>
+        <p><a href="../index.html">Back to portfolio</a></p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("case-study-year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
